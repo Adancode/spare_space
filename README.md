@@ -4,7 +4,7 @@ Project Overview: The site is essentially an airBnB, but for garage spaces.  So,
 
 Group Members:
 
-Adam Camacho
-William Kernan
-Justin LeBlanc
-Conor Mullen
+Adam Camacho  
+William Kernan  
+Justin LeBlanc  
+Conor Mullen  
