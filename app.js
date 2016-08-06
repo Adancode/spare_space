@@ -14,4 +14,7 @@ app.get('/', function (req, res) {
     res.render('home');
 });
 
+var routes = require('./controllers/routes.js');
+app.use('/', routes);
+
 app.listen(3000);
