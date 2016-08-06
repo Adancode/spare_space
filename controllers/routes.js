@@ -18,7 +18,12 @@ router.get('/sign-up', function(req, res){
 });
 
 router.post('/sign-up/create', function(req, res){
-	res.redirect('/profile');
+	//send account information to database then redirect back to home
+	res.redirect('/');
 });
+
+router.post('/login', function(req, res){
+	res.redirect('/');
+}
 
 module.exports = router;
