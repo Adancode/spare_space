@@ -24,6 +24,6 @@ router.post('/sign-up/create', function(req, res){
 
 router.post('/login', function(req, res){
 	res.redirect('/');
-}
+});
 
 module.exports = router;
