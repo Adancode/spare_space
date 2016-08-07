@@ -26,4 +26,8 @@ router.post('/login', function(req, res){
 	res.redirect('/');
 });
 
+router.use(function (req, res){
+	res.redirect('/');
+});
+
 module.exports = router;
