@@ -1,33 +1,64 @@
 var express = require('express');
-var router = express.Router();
+//var router = express.Router();
+var db = require('../models');
 
-router.get('/', function(req, res){
-    res.render('home');
-});
+module.exports = function(app, passport) {
 
-router.get('/browse', function(req, res){
-	res.render('browse');
-});
+	app.get('/', function(req, res){
+	    res.render('home');
+	});
 
-router.get('/profile', function(req, res){
-	res.send('under construction');
-});
+	app.get('/browse', function(req, res){
+		res.render('browse');
+	});
 
-router.get('/sign-up', function(req, res){
-	res.render('sign-up');
-});
+	app.get('/profile', isLoggedIn, function(req, res){
+		res.render('profile', {
+			user: req.user
+		});
+	});
 
-router.post('/sign-up/create', function(req, res){
-	//send account information to database then redirect back to home
-	res.redirect('/');
-});
+	app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
 
-router.post('/login', function(req, res){
-	res.redirect('/');
-});
+  app.get('/auth/google',
+    passport.authenticate('google', { scope: [
+      'https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/plus.profile.emails.read'
+    ]}
+  ));
+  app.get('/oauth2callback',
+    passport.authenticate('google', { 
+      successRedirect: '/profile',
+      failureRedirect: '/' 
+  }));
 
-router.use(function (req, res){
-	res.redirect('/');
-});
+	// router.get('/sign-up', function(req, res){
+	// 	res.render('sign-up');
+	// });
 
-module.exports = router;
+	// router.post('/sign-up/create', function(req, res){
+	// 	//send account information to database then redirect back to home
+	// 	res.redirect('/');
+	// });
+
+	// router.post('/login', function(req, res){
+	// 	res.redirect('/');
+	// });
+
+	app.use(function (req, res){
+		res.redirect('/');
+	});
+}
+
+function isLoggedIn(req, res, next) {
+	console.log(req.isAuthenticated);
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated())
+      return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
