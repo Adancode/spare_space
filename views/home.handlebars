@@ -1,6 +1,41 @@
 <!-- Jumbotron -->
-<div class="jumbotron text-center">
-     <h1>Spare Space</h1>
-     <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"></span> Google Login</a>
-     <a href="/logout" class="btn btn-default"><span class="fa fa-google"></span> Logout</a>
+<!--<div class="jumbotron text-center">-->
+
+<!-- Nav Bar -->
+<div class="navbar navbar-dark transparent navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand text-muted" id="linkZero" href="index.html">Spare Space</a>
+      </div> <!-- This closes the navbar-header div, and makes the dropdown menu at small screen sizes drop down blow the nav bar, instead of within it.-->
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+         <li><a class="navButton" href="index.html" id="linkOne">Home</a></li>
+         <li><a class="navButton" href="about.html" id="linkTwo">About</a></li>
+         <li><a href="/auth/google" class="navButton googButtons" id="linkFour"><span class="fa fa-google"></span> Google Login</a></li>
+         <li><a href="/logout" class="navButton googButtons" id="linkFive"><span class="fa fa-google"></span> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+ </div>
+<!-- End Nav Bar-->
+
+
+     <!--<a href="/auth/google" class="btn btn-danger googButtons"><span class="fa fa-google"></span> Google Login</a>
+     <a href="/logout" class="btn btn-default googButtons"><span class="fa fa-google"></span> Logout</a>-->
+
+<div id="mainHeading">
+     <h1 class="text-center" >Spare Space</h1>
+</div>
+<!--</div>-->
+
+<div class="container landingButtonContainer">
+     <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-3 btn-lg btn-primary text-center" id="firstLandingButton"><a href="" class="navButton landingButtons">I Have A Space</a></div>
+          <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-2 btn-lg btn-primary text-center" id="secondLandingButton"><a href="" class="navButton landingButtons">I Need a Space</a></div>
+     </div>
 </div>
