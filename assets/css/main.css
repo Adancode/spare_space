@@ -41,13 +41,24 @@
 
      a.landingButtons {
           color: white;
-
+          background-color: white;
      }
 
      #firstLandingButton, #secondLandingButton{
           margin-bottom: 40px;
           background-color: black !important;
           border-radius: 0;
+     }
+
+     a.landingButtons:hover {
+          color: black !important;
+          text-decoration: none;
+          background-color: white !important;
+     }
+
+     #firstLandingButton:hover, #secondLandingButton:hover {
+          background-color: white !important;
+          color: black !important;
      }
 
      .landingButtonContainer {
