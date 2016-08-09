@@ -7,15 +7,15 @@ module.exports = function(app, passport) {
 	    res.render('home');
 	});
 
-	app.post('/spaces/create', isLoggedIn, function(req, res) {
+	app.post('/spaces/create', function(req, res) {
 		var user = req.user;
-		db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
-		.then(function(space) {
-			user.addSpace(space);
-		}).then(function() {
-			req.flash('success', 'Your space at ' + req.body.address + ' has been created');
-			res.redirect('/spaces');
-		})
+			db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
+			.then(function(space) {
+				user.addSpace(space);
+			}).then(function() {
+				req.flash('success', 'Your space at ' + req.body.address + ' has been created');
+				res.redirect('/spaces');
+			})
 	})
 
 	app.get('/spaces', function(req, res){
@@ -48,19 +48,6 @@ module.exports = function(app, passport) {
       successRedirect: '/profile',
       failureRedirect: '/' 
   }));
-
-	// router.get('/sign-up', function(req, res){
-	// 	res.render('sign-up');
-	// });
-
-	// router.post('/sign-up/create', function(req, res){
-	// 	//send account information to database then redirect back to home
-	// 	res.redirect('/');
-	// });
-
-	// router.post('/login', function(req, res){
-	// 	res.redirect('/');
-	// });
 
 	app.use(function (req, res){
 		res.redirect('/');
