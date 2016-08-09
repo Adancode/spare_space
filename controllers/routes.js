@@ -1,5 +1,4 @@
 var express = require('express');
-//var router = express.Router();
 var db = require('../models');
 
 module.exports = function(app, passport) {
@@ -8,53 +7,26 @@ module.exports = function(app, passport) {
 	    res.render('home');
 	});
 
-// router.post('/burgers/create', function(req, res) {
-// 	db.burger.findOne({where: {burger_name: req.body.name}}).then(function(burger) {
-// 		if(!burger) {
-// 			var aBurger;
-// 			db.burger.create({ burger_name: req.body.name, ingredient: { name: req.body.ing_name } }, { include: [db.ingredient]})
-// 			.then(function(burger) {
-// 				aBurger = burger;
-// 			})
-// 			.then(function() {
-// 				req.flash('success', 'Your ' + req.body.name + ' with ' + req.body.ing_name + ' is ready to be devoured!');
-// 				res.redirect('/burgers');
-// 			});				
-// 		} else {
-// 			req.flash('failure', 'That burger has already been made');
-// 			res.redirect('/burgers');
-// 		}
-// 	})
-// });
-
 	app.post('/spaces/create', isLoggedIn, function(req, res) {
 		var user = req.user;
-		//db.sequelize.sync({force:true}).then(function() {
-			db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
-			.then(function(space) {
-				user.addSpace(space);
-			}).then(function() {
-				req.flash('success', 'Your space at ' + req.body.address + ' has been created');
-				res.redirect('/spaces');
-			})
-		//})
+		db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
+		.then(function(space) {
+			user.addSpace(space);
+		}).then(function() {
+			req.flash('success', 'Your space at ' + req.body.address + ' has been created');
+			res.redirect('/spaces');
+		})
 	})
 
-	app.get('/spaces', isLoggedIn, function(req, res){
+	app.get('/spaces', function(req, res){
 		db.Space.findAll({
 
 		}).then(function(data) {
 			res.render('spaces', {spaces: data});
 		});
-		// db.Space.findAll({
-
-		// }).then(function (data) {
-		// 	res.render('spaces', {spaces: data, message: req.flash()});
-		// });
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res){
-		//console.log(req.user);
 		res.render('profile', {
 			user: req.user
 		});
