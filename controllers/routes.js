@@ -4,7 +4,7 @@ var db = require('../models');
 module.exports = function(app, passport) {
 
 	app.get('/', function(req, res){
-	    res.render('home');
+	    res.render('home', {user: req.user});
 	});
 
 	app.post('/spaces/create', function(req, res) {
