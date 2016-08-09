@@ -1,3 +1,92 @@
 /* ==========================================================================
    Author's custom styles - change something else
    ========================================================================== */
+     body {
+          background: url(../images/backgroundPic.jpg) no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+     }
+
+     #mainHeading h1 {
+          font-size: 60px;
+          margin-top: 140px;
+          color: white;
+          text-shadow: #000 0px 0px 20px;
+          -webkit-font-smoothing: antialiased;
+     }
+
+     .googButtons {
+          margin-right: 20px;
+          border-style: none;
+     }
+
+     .navbar {
+          color: red;
+     }
+
+     li a.navButton:hover {
+          color: black;
+     }
+
+     a#linkZero, .navButton#linkOne,  .navButton#linkTwo, .navButton#linkThree, .navButton#linkFour, .navButton#linkFive  {
+          color:white;
+     }
+
+     a#linkZero:hover, .navButton#linkOne:hover,  .navButton#linkTwo:hover, .navButton#linkThree:hover, .navButton#linkFour:hover, .navButton#linkFive:hover  {
+          background-color:white;
+          color: black;
+     }
+
+     a.landingButtons {
+          color: white;
+
+     }
+
+     #firstLandingButton, #secondLandingButton{
+          margin-bottom: 40px;
+          background-color: black !important;
+          border-radius: 0;
+     }
+
+     .landingButtonContainer {
+          margin-top: 60px;
+     }
+
+     /*===============  Media Queries ================*/
+
+    /* Custom, iPhone Retina */
+    @media only screen and (min-width : 320px) {
+
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+         #mainHeading h1 {
+            font-size: 120px;
+            margin-top: 180px;
+         }
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+    /* Very Large Devices, Wide Screens */
+    @media only screen and (min-width : 1300px) {
+
+    }
+
+/*================================================*/
