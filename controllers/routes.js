@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 			})
 	})
 
-	app.get('/spaces', isLoggedIn, function(req, res){
+	app.get('/spaces', function(req, res){
 		db.Space.findAll({
 
 		}).then(function(data) {
