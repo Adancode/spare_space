@@ -14,7 +14,10 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
-      name: {
+      firstName: {
+        type: Sequelize.STRING
+      },
+      lastName: {
         type: Sequelize.STRING
       },
       email: {

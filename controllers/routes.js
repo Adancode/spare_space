@@ -114,10 +114,11 @@ module.exports = function(app, passport) {
     ]}
   ));
   app.get('/oauth2callback',
-    passport.authenticate('google', { 
-      successRedirect: '/profile',
-      failureRedirect: '/' 
-  }));
+    passport.authenticate('google'), function(req,res) { 
+      res.redirect(req.session.returnTo);
+      delete req.session.returnTo;
+  	}
+	);
 
 	app.use(function (req, res){
 		res.redirect('/');
@@ -128,8 +129,8 @@ function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
       return next();
-
+  req.session.returnTo = req.path;
   // if they aren't redirect them to the home page
   req.flash('notLoggedIn', 'Please log in');
-  res.redirect('/');
+  res.redirect('/auth/google');
 }
