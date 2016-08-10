@@ -22,10 +22,6 @@
           border-style: none;
      }
 
-     .navbar {
-          color: red;
-     }
-
      li a.navButton:hover {
           color: black;
      }
@@ -46,7 +42,7 @@
 
      #firstLandingButton, #secondLandingButton{
           margin-bottom: 40px;
-          background-color: black !important;
+          background-color: #222222 !important;
           border-radius: 0;
      }
 
