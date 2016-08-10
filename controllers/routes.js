@@ -46,6 +46,34 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res){
+		var queries = [];
+		req.user.space = [];
+		db.Space.findAll({where: {userID: req.user.id}}).then(function(data) {
+			for(var i = 0; i < data.length; i++){
+				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
+				data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+			}	
+			data.forEach(function(space) {
+				queries.push(space);
+			})
+			Promise.all(queries).then(function(result) {
+				for(var i=0; i<result.length; i++) {
+					req.user.space.push({
+						space_address: result[i].address,
+						space_city: result[i].city,
+						space_state: result[i].state,
+						space_zipcode: result[i].zipcode,
+						space_description: result[i].description,
+						space_price: result[i].price,
+						space_to: result[i].to,
+						space_from: result[i].from,
+						space_status: result[i].status,
+						space_photo: result[i].photo
+					})
+					console.log("space:",req.user);
+				}
+			})
+		});
 		res.render('profile', {
 			user: req.user
 		});
