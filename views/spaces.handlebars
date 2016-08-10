@@ -11,16 +11,29 @@
 
 	<div class="row">
 		<div class="col-6 md">
-			{{#each spaces}}
-				<div class="searchResult">
-					<img src="{{this.photo}}" height="150px" width="150px">
-					<h3>Address: {{this.address}}</h1>
-					<h3>{{this.city}}, {{this.state}}</h1>
-					<h3>{{this.zipcode}}</h1>
-					<h3>${{this.price}} / month</h3>
-					<h3>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h3>
-				</div>
-			{{/each}}
+			{{#if user}}
+				{{#each user.space}}
+					<div class="searchResult">
+						<img src="{{this.photo}}" height="150px" width="150px">
+						<a href="space/{{this.id}}"> <h3>Address: {{this.address}}</h3></a>
+						<h3>{{this.city}}, {{this.state}}</h3>
+						<h3>{{this.zipcode}}</h3>
+						<h3>${{this.price}} / month</h3>
+						<h3>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h3>
+					</div>
+				{{/each}}
+			{{else}}
+				{{#each space}}
+					<div class="searchResult">
+						<img src="{{this.photo}}" height="150px" width="150px">
+						<a href="auth/google"> <h3>Address: {{this.address}}</h1></a>
+						<h3>{{this.city}}, {{this.state}}</h3>
+						<h3>{{this.zipcode}}</h3>
+						<h3>${{this.price}} / month</h3>
+						<h3>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h3>
+					</div>
+				{{/each}}
+			{{/if}}
 		</div>
 		<div class="col-6 md">
 		</div>
