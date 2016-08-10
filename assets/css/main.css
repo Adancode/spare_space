@@ -11,9 +11,36 @@
           position:absolute;
           top:0;
           right:0;
-          bottom:0;
+          bottom:0px;
           left:0;
      }
+
+     /* ========================== Footer */
+     .theFooter {
+          clear: both;
+          background-color: rgba(255, 255, 255, .1);
+          color: white;
+          height: 50px;
+          z-index: 100;
+          padding-top: 17px;
+     }
+
+     #itemOneFooter {
+          margin-left: 20px;
+     }
+     /* ========================== Footer */
+
+     /* ========================== Sticky Footer */
+     .Site {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+     }
+
+     .Site-content {
+          flex: 1;
+     }
+     /* ========================== Sticky Footer */
 
      #mainHeading h1 {
           font-size: 60px;
@@ -44,6 +71,10 @@
      a.landingButtons {
           color: white;
           background-color: white;
+     }
+
+     a.landingButtons:focus {
+          text-decoration: none;
      }
 
      #firstLandingButton, #secondLandingButton{
