@@ -1,0 +1,62 @@
+HOME PAGE:
+two buttons: I Need A Space / I've Got A Space
+When authenticated, show User Name & Logout link, when you click your name, take the user to their user page. 
+When not authenticated, show Google Login & hide logout button.
+You do not need to be authenticated in order to search for a space.
+Use large background image.
+
+USER PAGE:
+Have dynamic API routes for each authenticated user, where you can see that users reservations of spaces, and listed of reservable spaces.
+Use neutral background color
+Shows user name, address, phone number, email address.
+
+Left column shows list of reservations, which you can cancel and/or delete.
+Shows Reservation ID, Space ID (also a link to the space's own page), Space Name, Recurring Amount to rent, Start Date, any expected End Date
+
+Right column shows list of your reservable spaces, which you can add, edit, and/or delete.
+Shows Space ID (also a link to the space's own page), Space Name, recurring amount to rent, availablility boolean
+
+
+SEARCH PAGE:
+Has a Google Map that shows all of the available spaces in the area shown on the map.  When you click a pushpin on the map, a cloud/modal will appear that shows some basic information about the space.  The user will be able to click "More Info" to see more space details and reserve the space.
+Use neutral background color.
+
+Small Left column: Ability to type in an address, city name, and/or zip code.
+Larger Right column: Shows the map.
+
+SPACE PAGE:
+Have dynamic API routes for each space.  Here you can see all of the details of that particular space.  You can click a "Reserve" button to reserve that space.
+Use neutral background color
+Shows space id, location on small map, space name, description, space owner, price, availability start date, availability end date (if any), photos of space.
+
+RESERVATION PAGE:
+Capture the necessary details to secure a reservation.
+Use neutral background color.
+
+NAVIGATION BAR:
+Needs to be on top on all pages, except for any modals.
+Contrast Nav bar from background color.
+Home Page, How it works Page/Modal, Search Page, Google Login or User Page, and Logout link if logged in.
+
+FOOTER:
+Needs a small sticky footer on pages, except for any modals.
+Contrast Nav bar from background color.
+Home Page, copyright info, terms of use (dummy link), privacy policy (dummy link), How it Works page/modal
+
+PAYMENT OPTIONS on RESERVATION PAGE: 
+Use stripe package
+
+HOW IT WORKS PAGE/MODAL: 
+Have A Space:
+1. Click "I've Got a Space"
+2. Describe your Space
+
+Need A Space:
+1. Click "I Need A Space"
+2. Find a Space that works for you.
+3. Reserve the Space.
+
+
+
+
+

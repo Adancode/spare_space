@@ -19,8 +19,8 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/spaces', function(req, res){
+		console.log("route1");
 		db.Space.findAll({
-
 		}).then(function(data) {
 			req.user.space = data;
 			res.render('spaces', {user: req.user});
@@ -36,6 +36,21 @@ module.exports = function(app, passport) {
 			res.render('space', {user: req.user});
 		})
 	})
+
+	app.get('/spaces/search/', function(req, res){
+		console.log("route2");
+		console.log(req.query.city);
+		db.Space.findAll({where: {city: req.query.city}
+
+		}).then(function(data){
+			for(var i = 0; i < data.length; i++){
+				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
+				data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+			}
+			res.render('spaces', {spaces: data});
+
+		});
+	});
 
 	app.get('/profile', isLoggedIn, function(req, res){
 		var queries = [];
