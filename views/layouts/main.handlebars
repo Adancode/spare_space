@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
+<body class="Site">
      <!-- Nav Bar -->
      <div class="navbar navbar-dark transparent navbar-inverse navbar-fixed-top">
          <div class="container">
@@ -23,8 +23,9 @@
              <ul class="nav navbar-nav navbar-right">
             		<li><a class="navButton" href="/" id="linkOne">Home</a></li>
             		<li><a class="navButton" href="/about" id="linkTwo">About</a></li>
-        				{{#if user}}
-              		<li><a href="/profile" id="linkThree" class="navButton">Welcome {{user.name}}!</a></li>
+                    <li><a class="navButton" href="/spaces" id="linkFour">Search</a></li>
+   				{{#if user}}
+              		<li><a href="/profile" id="linkThree" class="navButton">Welcome, {{user.name}}!</a></li>
           		{{else}}
             		{{/if}}
                     {{#if user}}
@@ -36,8 +37,21 @@
          </div>
       </div>
      <!-- End Nav Bar-->
-
+    <main class="Site-content">
     {{{body}}}
+    </main>
+
+         <div class="container theFooter">
+              <div class="">
+                   <div class="">
+                        <span id="itemOneFooter">&copy; UT Coding Boot Camp</span>
+                        <span id="itemTwoFooter">Terms</span>
+                        <span id="itemThreeFooter">Privacy</span>
+                   </div>
+              </div>
+         </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>

@@ -15,6 +15,47 @@
           left:0;
      }
 
+     /* ========================== Footer */
+     .theFooter {
+          clear: both;
+          color: #333333;
+          height: 50px;
+          z-index: 1000;
+          padding-top: 16px;
+
+     }
+
+     #itemOneFooter {
+
+     }
+
+     #itemTwoFooter, #itemThreeFooter {
+          float: right;
+
+     }
+
+     #itemTwoFooter {
+          margin-right: 20px;
+     }
+
+     #itemThreeFooter {
+          margin-right: 20px;
+     }
+
+     /* ========================== Footer */
+
+     /* ========================== Sticky Footer */
+     .Site {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+     }
+
+     .Site-content {
+          flex: 1;
+     }
+     /* ========================== Sticky Footer */
+
      #mainHeading h1 {
           font-size: 60px;
           margin-top: 140px;
@@ -44,6 +85,10 @@
      a.landingButtons {
           color: white;
           background-color: white;
+     }
+
+     a.landingButtons:focus {
+          text-decoration: none;
      }
 
      #firstLandingButton, #secondLandingButton{
