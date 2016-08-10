@@ -1,7 +1,19 @@
 <div class="jumbotron text-center">
 	<img src="{{user.pic}}" height="75px" width="75px">
 	<h1>name: {{user.name}}</h1>
-	<a href="/logout" class="btn btn-default"><span class="fa fa-google"></span> Logout</a>
+	{{#each user.space}}
+		<div class="well">
+			<img src="{{this.space_photo}}" height="200px" width="200px">
+			<p>{{this.space_address}}</p>
+			<p>{{this.space_city}}</p>
+			<p>{{this.space_state}}</p>
+			<p>{{this.space_zipcode}}</p>
+			<p>{{this.space_description}}</p>
+			<p>${{this.space_price}}</p>
+			<p>{{this.space_to}}</p>
+			<p>{{this.space_from}}</p>
+		</div>
+	{{/each}}
 </div>
 <form class="form" action="spaces/create" method="POST">
   <div class="form-group">
