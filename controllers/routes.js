@@ -4,7 +4,7 @@ var db = require('../models');
 module.exports = function(app, passport) {
 
 	app.get('/', function(req, res){
-	    res.render('home', {user: req.user});
+	    res.render('home', {user: req.user, message: req.flash()});
 	});
 
 	app.post('/spaces/create', function(req, res) {
@@ -19,10 +19,52 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/spaces', function(req, res){
-		db.Space.findAll({
+		if(req.user) {
+			req.user.space = {}
+			db.Space.findAll({
 
-		}).then(function(data) {
-			res.render('spaces', {spaces: data});
+			}).then(function(data) {
+				for(var i = 0; i < data.length; i++){
+					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
+ 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+ 				}
+				req.user.space = data;
+				res.render('spaces', {user: req.user});
+			});
+		} else {
+			db.Space.findAll({
+
+			}).then(function(data) {
+				for(var i = 0; i < data.length; i++){
+					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
+ 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+ 				}
+				res.render('spaces', {space: data});
+			})
+		}
+
+	});
+
+	app.get('/space/:id', isLoggedIn, function(req, res) {
+		db.Space.find({where: {id: req.params.id}})
+		.then(function(data) {
+			data.dataValues.from = data.dataValues.from.toString().substring(4, 15);
+			data.dataValues.to = data.dataValues.to.toString().substring(4, 15);
+			req.user.space = data;
+			res.render('space', {user: req.user});
+		})
+	})
+
+	app.get('/spaces/search/', function(req, res){
+		db.Space.findAll({where: {city: req.query.city}
+
+		}).then(function(data){
+			for(var i = 0; i < data.length; i++){
+				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
+				data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+			}
+			res.render('spaces', {space: data});
+
 		});
 	});
 
@@ -40,6 +82,7 @@ module.exports = function(app, passport) {
 			Promise.all(queries).then(function(result) {
 				for(var i=0; i<result.length; i++) {
 					req.user.space.push({
+						space_id: result[i].id,
 						space_address: result[i].address,
 						space_city: result[i].city,
 						space_state: result[i].state,
@@ -51,12 +94,11 @@ module.exports = function(app, passport) {
 						space_status: result[i].status,
 						space_photo: result[i].photo
 					})
-					console.log("space:",req.user);
 				}
+				res.render('profile', {
+					user: req.user
+				});
 			})
-		});
-		res.render('profile', {
-			user: req.user
 		});
 	});
 
@@ -83,11 +125,11 @@ module.exports = function(app, passport) {
 }
 
 function isLoggedIn(req, res, next) {
-	console.log(req.isAuthenticated);
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated())
       return next();
 
   // if they aren't redirect them to the home page
+  req.flash('notLoggedIn', 'Please log in');
   res.redirect('/');
 }

@@ -1,0 +1,26 @@
+<div class="well text-center">
+	<h1 style="margin-top: 70px">{{user.space.address}}</h1>
+</div>
+<div class="container text-center">
+	<img src="{{user.space.photo}}" height="250px" width="250px">
+	<p>{{user.space.address}}</p>
+	<p>{{user.space.city}}</p>
+	<p>{{user.space.state}}</p>
+	<p>{{user.space.zipcode}}</p>
+	<p>{{user.space.description}}</p>
+	<p>{{user.space.price}}</p>
+	<p>{{user.space.from}}</p>
+	<p>{{user.space.to}}</p>
+</div>
+
+<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_yj5RZqvZIFU3W1Z15LRbrh3u"
+    data-amount={{user.space.price}}00
+    data-name="Spare Space"
+    data-description="Widget"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>
