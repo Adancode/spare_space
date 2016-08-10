@@ -32,6 +32,10 @@ module.exports = {
       to: {
         type: Sequelize.DATE
       },
+      status: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
       photo: {
         type: Sequelize.STRING
       },

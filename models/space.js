@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     price: DataTypes.INTEGER,
     from: DataTypes.DATE,
     to: DataTypes.DATE,
+    status: DataTypes.BOOLEAN,
     photo: DataTypes.STRING
   }, {
     classMethods: {
