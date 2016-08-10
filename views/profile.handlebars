@@ -1,6 +1,6 @@
 <div class="jumbotron text-center">
 	<img src="{{user.pic}}" height="75px" width="75px">
-	<h1>name: {{user.name}}</h1>
+	<h1>name: {{user.firstName}} {{user.lastName}}</h1>
 	{{#each user.space}}
 		<div class="well">
 			<img src="{{this.space_photo}}" height="100px" width="100px">
