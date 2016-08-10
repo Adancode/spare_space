@@ -65,6 +65,17 @@
           margin-top: 60px;
      }
 
+     #searchContainer{
+          margin: auto;
+          width: 80%;
+     }
+
+     .searchResult{
+          background-color: #EEEEEE;
+          padding: 5px;
+          margin: 5px 0;
+     }
+
      /*===============  Media Queries ================*/
 
     /* Custom, iPhone Retina */
