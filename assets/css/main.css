@@ -1,12 +1,18 @@
 /* ==========================================================================
    Author's custom styles - change something else
    ========================================================================== */
-     body {
+     .imageHolder {
           background: url(../images/backgroundPic.jpg) no-repeat center center fixed;
-          -webkit-background-size: cover;
+          webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
           background-size: cover;
+          position:fixed !important;
+          position:absolute;
+          top:0;
+          right:0;
+          bottom:0;
+          left:0;
      }
 
      #mainHeading h1 {
