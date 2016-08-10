@@ -22,9 +22,20 @@ module.exports = function(app, passport) {
 		db.Space.findAll({
 
 		}).then(function(data) {
-			res.render('spaces', {spaces: data});
+			req.user.space = data;
+			res.render('spaces', {user: req.user});
 		});
 	});
+
+	app.get('/spaces/:id', function(req, res) {
+		db.Space.find({where: {id: req.params.id}})
+		.then(function(data) {
+			data.dataValues.from = data.dataValues.from.toString().substring(4, 15);
+			data.dataValues.to = data.dataValues.to.toString().substring(4, 15);
+			req.user.space = data;
+			res.render('space', {user: req.user});
+		})
+	})
 
 	app.get('/profile', isLoggedIn, function(req, res){
 		var queries = [];
@@ -40,6 +51,7 @@ module.exports = function(app, passport) {
 			Promise.all(queries).then(function(result) {
 				for(var i=0; i<result.length; i++) {
 					req.user.space.push({
+						space_id: result[i].id,
 						space_address: result[i].address,
 						space_city: result[i].city,
 						space_state: result[i].state,
@@ -51,7 +63,6 @@ module.exports = function(app, passport) {
 						space_status: result[i].status,
 						space_photo: result[i].photo
 					})
-					console.log("space:",req.user);
 				}
 			})
 		});

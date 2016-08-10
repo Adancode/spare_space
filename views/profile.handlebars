@@ -3,8 +3,8 @@
 	<h1>name: {{user.name}}</h1>
 	{{#each user.space}}
 		<div class="well">
-			<img src="{{this.space_photo}}" height="200px" width="200px">
-			<p>{{this.space_address}}</p>
+			<img src="{{this.space_photo}}" height="100px" width="100px">
+			<a href="spaces/{{this.space_id}}">{{this.space_address}}</a>
 			<p>{{this.space_city}}</p>
 			<p>{{this.space_state}}</p>
 			<p>{{this.space_zipcode}}</p>
