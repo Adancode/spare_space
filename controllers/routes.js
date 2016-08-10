@@ -95,10 +95,10 @@ module.exports = function(app, passport) {
 						space_photo: result[i].photo
 					})
 				}
+				res.render('profile', {
+					user: req.user
+				});
 			})
-		});
-		res.render('profile', {
-			user: req.user
 		});
 	});
 
