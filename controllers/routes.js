@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
 	app.post('/spaces/create', function(req, res) {
 		var user = req.user;
-			db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
+			db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, type: req.body.type, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
 			.then(function(space) {
 				user.addSpace(space);
 			}).then(function() {
@@ -87,6 +87,7 @@ module.exports = function(app, passport) {
 						space_city: result[i].city,
 						space_state: result[i].state,
 						space_zipcode: result[i].zipcode,
+						space_type: result[i].type,
 						space_description: result[i].description,
 						space_price: result[i].price,
 						space_to: result[i].to,
