@@ -136,7 +136,7 @@
          /*width: 500px;*/
          padding: 30px;
          background: #FFFFFF;
-         margin: 50px auto;
+         margin: 10px auto;
          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
          -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
          -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
@@ -145,6 +145,7 @@
 
      .containerTopProfile {
           margin-top: 60px;
+          margin-bottom: 60px;
      }
 
      .form-style-top-div {
@@ -224,6 +225,7 @@
           margin-top: 17px;
      }
 
+
      .profileImage {
           border-radius: 10px;
           border: 2px solid black;
@@ -232,8 +234,29 @@
 
      .profileName {
           float: left;
-          font-size: 28px;
+          font-size: 22px;
           margin-left: 20px;
+
+     }
+
+     .modalButton {
+          margin-left: 10px;
+     }
+
+     .spaceImageProfile {
+          display: block;
+          margin: 0 auto;
+          border-radius: 10px;
+          border: 2px solid black;
+          margin-bottom: 20px;
+     }
+
+     .descriptionFirst {
+          font-weight: bold;
+     }
+
+     .descriptionAll {
+          font-size: 16px;
      }
 
      /* ========================== Profile Page */
@@ -253,11 +276,6 @@
             border: 2px solid black;
             float: left;
         }
-
-        .profileName {
-            margin-left: 40px;
-            font-size: 36px;
-        }
     }
 
     /* Small Devices, Tablets */
@@ -266,6 +284,10 @@
             font-size: 120px;
             margin-top: 180px;
          }
+         .profileName {
+            margin-left: 40px;
+            font-size: 36px;
+        }
     }
 
     /* Medium Devices, Desktops */
