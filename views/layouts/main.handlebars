@@ -23,13 +23,12 @@
            <div class="collapse navbar-collapse">
              <ul class="nav navbar-nav navbar-right">
             		<li><a class="navButton" href="/" id="linkOne">Home</a></li>
-            		<li><a class="navButton" href="/about" id="linkTwo">About</a></li>
-                <li><a class="navButton" href="/spaces" id="linkFour">Search</a></li>
+                    <li><a class="navButton" href="/spaces" id="linkFour">Search</a></li>
         				{{#if user}}
               		<li><a href="/profile" id="linkThree" class="navButton">Welcome, {{user.firstName}}!</a></li>
           			{{else}}
-            		{{/if}}
-                {{#if user}}
+            		     {{/if}}
+                         {{#if user}}
               		<li><a href="/logout" class="navButton googButtons" id="linkFive">Logout</a></li>
                {{else}}
                {{/if}}
@@ -45,9 +44,9 @@
          <div class="container theFooter">
               <div class="">
                    <div class="">
-                        <span id="itemOneFooter">&copy; UT Coding Boot Camp</span>
-                        <span id="itemTwoFooter">Terms</span>
-                        <span id="itemThreeFooter">Privacy</span>
+                        <span id="itemOneFooter">&copy; UT Coding Boot Camp </span>
+                        <span id="itemTwoFooter"> Terms</span>
+                        <span id="itemThreeFooter"> Privacy</span>
                    </div>
               </div>
          </div>
