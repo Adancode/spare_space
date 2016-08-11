@@ -38,6 +38,7 @@
 
      #itemTwoFooter, #itemThreeFooter {
           float: right;
+          margin-left: 20px;
      }
 
      #itemTwoFooter {
@@ -145,7 +146,7 @@
 
      .containerTopProfile {
           margin-top: 60px;
-          margin-bottom: 60px;
+          margin-bottom: 20px;
      }
 
      .form-style-top-div {
@@ -227,7 +228,7 @@
 
 
      .profileImage {
-          border-radius: 10px;
+          border-radius: 4px;
           border: 2px solid black;
           float: left;
      }
@@ -246,9 +247,11 @@
      .spaceImageProfile {
           display: block;
           margin: 0 auto;
-          border-radius: 10px;
-          border: 2px solid black;
+          border-radius: 4px;
           margin-bottom: 20px;
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
+         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
+         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.42);
      }
 
      .descriptionFirst {
@@ -256,7 +259,11 @@
      }
 
      .descriptionAll {
-          font-size: 16px;
+          font-size: 17px;
+     }
+
+     .profileLeftTitle {
+          margin-bottom: 20px;
      }
 
      /* ========================== Profile Page */
@@ -272,7 +279,7 @@
     /* Extra Small Devices, Phones */
     @media only screen and (min-width : 480px) {
          .profileImage {
-            border-radius: 10px;
+            border-radius: 4px;
             border: 2px solid black;
             float: left;
         }
