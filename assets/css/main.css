@@ -113,14 +113,29 @@
      }
 
      #searchContainer{
-          margin: auto;
+          margin: 40px auto auto;
           width: 80%;
+          height: 700px;
+     }
+
+     #searchList{
+          overflow-y: auto;
+          overflow-x: hidden;
+          float: left;
+          width: 45%;
      }
 
      .searchResult{
           background-color: #EEEEEE;
           padding: 5px;
           margin: 5px 0;
+          width: 100%;
+     }
+
+     #map{
+          width: 45%;
+          height: 500px;
+          float: right;
      }
 
      /*===============  Media Queries ================*/
