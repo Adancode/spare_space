@@ -21,7 +21,61 @@ function initMap(){
 	var searchListDiv = document.getElementById('searchList');
 	var children = searchListDiv.children;
 
-	for(var i = 0; i < children.length; i++){
+	{{#if user}}
+		{{#each user.space}}
+			var address = "{{this.address}}";
+			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
+
+			var markerTitle = {{this.id}};
+
+			var infoWindow = new google.maps.InfoWindow({
+				content: markerInfo
+			});
+
+			geocoder.geocode({'address': address}, function(results, status){
+				if(status == 'OK'){
+					var marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location,
+						label: "R",
+						title: markerTitle
+					});
+					marker.addListener('click', function(){
+						infoWindow.open(map, marker);
+					});
+				}
+			});
+		{{/each}}
+	{{else}}
+		{{#each space}}
+			var address = "{{this.address}}";
+			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
+
+			var markerTitle = {{this.id}};
+
+			var infoWindow = new google.maps.InfoWindow({
+				content: markerInfo
+			});
+
+			geocoder.geocode({'address': address}, function(results, status){
+				if(status == 'OK'){
+					var marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location,
+						label: "R",
+						title: markerTitle
+					});
+					marker.addListener('click', function(){
+						infoWindow.open(map, marker);
+					});
+				}
+			});
+		{{/each}}
+	{{/if}}
+
+	/*for(var i = 0; i < children.length; i++){
 		var address = children[i].children[2].children[0].innerHTML;
 		address = address.substring(9, address.length);
 
@@ -49,5 +103,5 @@ function initMap(){
 				});
 			}
 		});
-	}
+	}*/
 }

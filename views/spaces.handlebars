@@ -69,9 +69,11 @@ function initMap(){
 		{{#each user.space}}
 			var address = "{{this.address}}";
 			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
+				'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month';
 
-			var markerTitle = {{this.id}};
+			var markerTitle = "{{this.id}}";
+
+			var label = "{{this.type}}".substring(0, 1);
 
 			var infoWindow = new google.maps.InfoWindow({
 				content: markerInfo
@@ -82,7 +84,7 @@ function initMap(){
 					var marker = new google.maps.Marker({
 						map: map,
 						position: results[0].geometry.location,
-						label: "R",
+						label: label,
 						title: markerTitle
 					});
 					marker.addListener('click', function(){
@@ -95,11 +97,11 @@ function initMap(){
 		{{#each space}}
 			var address = "{{this.address}}";
 			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
+				'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month';
 
-			console.log(markerInfo);
+			var markerTitle = "{{this.id}}";
 
-			var markerTitle = {{this.id}};
+			var label = "{{this.type}}".substring(0, 1);
 
 			var infoWindow = new google.maps.InfoWindow({
 				content: markerInfo
@@ -110,7 +112,7 @@ function initMap(){
 					var marker = new google.maps.Marker({
 						map: map,
 						position: results[0].geometry.location,
-						label: "R",
+						label: label,
 						title: markerTitle
 					});
 					marker.addListener('click', function(){
