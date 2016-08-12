@@ -297,15 +297,24 @@
           margin-top: 20px;
      }
 
+     .editButton {
+          margin-top: 10px;
+          float: left;
+     }
+
+     .deleteButton {
+          margin-top: 10px;
+          margin-left: 10px;
+     }
+
      /* ========================== Space/id Page */
 
      /* ========================== Spaces Page */
 
      #searchContainer{
           margin-top: 80px;
-          /*margin: 40px auto auto;
-          width: 80%;
-          height: 700px;*/
+          /*margin: 40px auto auto;*/
+          /*height: 700px;*/
           margin-bottom: -40px;
      }
 
@@ -318,20 +327,20 @@
           margin-top: 10px;
      }
 
-     .gmap {
+     /*.gmap {
       padding-left: 0;
-     }
+     }*/
 
      .spacePic {
           float: left;
-          clear:both;
+          /*clear:both;*/
           margin-right: 20px;
           margin-bottom: 20px;
      }
 
-     .searchResult:first-child {
+     /*.searchResult:first-child {
       margin-top: 0;
-     }
+     }*/
 
      .searchResult {
           margin-top:50px;

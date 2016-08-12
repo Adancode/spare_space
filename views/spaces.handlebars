@@ -1,12 +1,14 @@
 
 <div class="container-fluid">
-     <div class="row" id="searchContainer">
-          <div class="col-md-12">
+     <div id="searchContainer"> <!--Bill, this had a class of "row", but that caused margin issues-->
+          <div>
+          <!--<div class="col-md-12">-->
                <form action="/spaces/search/" method="GET" class="form-inline">
-                    <input type="text" name="city" placeholder="Enter a City" class="form-control">
-                    <button class="btn btn-success" type="submit">Search</button>
+                    <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
+                    <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
                </form>
           </div>
+          <!--</div>-->
      </div>
 </div>
 
@@ -30,12 +32,18 @@
 				{{#each space}}
 					<div class="searchResult result">
 						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
-						<h5>{{this.type}}</h5>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
+						<!--<h5>{{this.type}}</h5>
 						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
 						<h5>{{this.zipcode}}</h5>
 						<h5>${{this.price}} / month</h5>
-						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
+						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>-->
 					</div>
 				{{/each}}
 			{{/if}}
