@@ -2,8 +2,8 @@
 <div class="container-fluid">
      <div class="row" id="searchContainer">
           <div class="col-md-12">
-               <form action="/spaces/search/" method="GET">
-                    <input type="text" name="city" placeholder="Enter a City">
+               <form action="/spaces/search/" method="GET" class="form-inline">
+                    <input type="text" name="city" placeholder="Enter a City" class="form-control">
                     <button class="btn btn-success" type="submit">Search</button>
                </form>
           </div>
@@ -40,7 +40,7 @@
 				{{/each}}
 			{{/if}}
 		</div>
-		<div class="col-md-8 col-sm-7">
+		<div class="col-md-8 col-sm-7 gmap">
 			<div class="form-style-8" id="map"></div>
 		</div>
 	</div>
