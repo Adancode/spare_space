@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
 				user.addSpace(space);
 			}).then(function() {
 				req.flash('success', 'Your space at ' + req.body.address + ' has been created');
-				res.redirect('/spaces');
+				res.redirect('/profile');
 			})
 	})
 

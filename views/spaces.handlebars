@@ -45,22 +45,35 @@
 var map;
 var geocoder;
 
-function getDefaultLocation(){
-	if(navigator.geolocation){
-		return navigator.geolocation.getCurrentPosition(showPosition);
-	}
-}
-
-function showPosition(position){
-	return position.coords.latitude;
+function createMap(lat, lng){
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: lat, lng: lng},
+		zoom: 11
+	});
 }
 
 function initMap(){
+	
+	var defaultLat;
+	var defaultLng;
+
+	var geoSuccess = function(position){
+		defaultLat = position.coords.latitude;
+		defaultLng = position.coords.longitude;
+		createMap(defaultLat, defaultLng);
+	};
+
+	var geoError = function(error){
+		console.log("Error occurred. Error code: " + error.code);
+	};
+
+	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+
+	if(defaultLat == undefined || defaultLng == undefined){
+		createMap(30.2672, -97.7431);
+	}
+
 	geocoder = new google.maps.Geocoder();
-	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 30.2672, lng: -97.7431},
-		zoom: 10
-	});
 
 	var searchListDiv = document.getElementById('searchList');
 	var children = searchListDiv.children;
@@ -68,23 +81,29 @@ function initMap(){
 	{{#if user}}
 		{{#each user.space}}
 			var address = "{{this.address}}";
-			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
-
-			var markerTitle = {{this.id}};
-
-			var infoWindow = new google.maps.InfoWindow({
-				content: markerInfo
-			});
-
 			geocoder.geocode({'address': address}, function(results, status){
 				if(status == 'OK'){
+					var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+					'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
+					'<br><a href="/space/{{this.id}}">Details</a>';
+
+					var markerTitle = "{{this.id}}";
+
+					var label = "{{this.type}}".substring(0, 1);
+
+					var infoWindow = new google.maps.InfoWindow({
+						content: markerInfo
+					});
+
+					var label = "{{this.type}}".substring(0, 1);
+
 					var marker = new google.maps.Marker({
 						map: map,
 						position: results[0].geometry.location,
-						label: "R",
+						label: label,
 						title: markerTitle
 					});
+
 					marker.addListener('click', function(){
 						infoWindow.open(map, marker);
 					});
@@ -94,25 +113,27 @@ function initMap(){
 	{{else}}
 		{{#each space}}
 			var address = "{{this.address}}";
-			var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-				'{{this.type}}<br>{{this.address}}<br>{{this.price}} / month';
-
-			console.log(markerInfo);
-
-			var markerTitle = {{this.id}};
-
-			var infoWindow = new google.maps.InfoWindow({
-				content: markerInfo
-			});
-
 			geocoder.geocode({'address': address}, function(results, status){
 				if(status == 'OK'){
+					var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
+						'<br><a href="/space/{{this.id}}">Details</a>';
+
+					var markerTitle = "{{this.id}}";
+
+					var infoWindow = new google.maps.InfoWindow({
+						content: markerInfo
+					});
+
+					var label = "{{this.type}}".substring(0, 1);
+
 					var marker = new google.maps.Marker({
 						map: map,
 						position: results[0].geometry.location,
-						label: "R",
+						label: label,
 						title: markerTitle
 					});
+					
 					marker.addListener('click', function(){
 						infoWindow.open(map, marker);
 					});
