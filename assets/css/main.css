@@ -283,6 +283,42 @@
 
      /* ========================== Profile Page */
 
+     /* ========================== Space/id Page */
+
+     .spaceImageProfileDetail {
+          display: block;
+          margin: 0 auto;
+          border-radius: 4px;
+          margin-bottom: 20px;
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
+         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
+         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.42);
+     }
+
+     .form-style-9{
+         font-family: 'Open Sans Condensed', arial, sans;
+         /*width: 500px;*/
+         padding: 30px;
+         background: #FFFFFF;
+         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+     }
+
+     .spaceTitle {
+          font-family: 'Open Sans Condensed', arial, sans;
+          background-color: none;
+          margin-bottom: 30px;
+          margin-top: 80px;
+     }
+
+     .payButton {
+          margin-top: 20px;
+     }
+
+     /* ========================== Space/id Page */
+
+
      /*===============  Media Queries ================*/
 
     /* Custom, iPhone Retina */
