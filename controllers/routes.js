@@ -54,12 +54,30 @@ module.exports = function(app, passport) {
 		});
 	})
 
+	app.put('/transactions/:id', function(req,res) {
+		db.Space.update(
+		{
+			status: false
+		},
+		{
+			where: {
+				id: req.params.id
+			}
+		}).then(function() {
+			req.flash('transaction', 'The owner will be in contact shortly');
+			res.redirect('/profile');
+		});
+	});
+
 	app.get('/spaces', function(req, res){
 		if(req.user) {
 			req.user.space = {}
 			db.Space.findAll({
-
+				where: {
+					status: true
+				}
 			}).then(function(data) {
+				console.log(data);
 				for(var i = 0; i < data.length; i++){
 					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
  					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
@@ -69,8 +87,11 @@ module.exports = function(app, passport) {
 			});
 		} else {
 			db.Space.findAll({
-
+				where: {
+					status: true
+				}
 			}).then(function(data) {
+				console.log(data);
 				for(var i = 0; i < data.length; i++){
 					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
  					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
@@ -78,7 +99,6 @@ module.exports = function(app, passport) {
 				res.render('spaces', {space: data});
 			})
 		}
-
 	});
 
 	app.get('/space/:id', isLoggedIn, function(req, res) {

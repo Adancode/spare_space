@@ -17,6 +17,11 @@
           <h3 class="profileLeftTitle">Spaces You Are Advertising</h3>
           {{#each user.space}}
                <div class="well form-style-8">
+                    {{#if this.space_status}}
+                      <h1 class="text-success">Available for Rent</h1>
+                    {{else}}
+                      <h1 class="text-danger">Booked</h1>
+                    {{/if}}
                     <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
                     <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{this.space_address}}</a></p>
                     <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{this.space_city}}</p>
