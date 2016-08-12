@@ -26,9 +26,9 @@
                     <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.space_price}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
-                    <button class="btn btn-info btn-sm" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <button class="btn btn-info btn-md editButton" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                     <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
-                      <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                      <button class="btn btn-danger btn-md deleteButton" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                     </form>
                </div>
                 <div id="{{this.space_id}}" class="modal fade" role="dialog">

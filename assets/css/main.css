@@ -297,6 +297,16 @@
           margin-top: 20px;
      }
 
+     .editButton {
+          margin-top: 10px;
+          float: left;
+     }
+
+     .deleteButton {
+          margin-top: 10px;
+          margin-left: 10px;
+     }
+
      /* ========================== Space/id Page */
 
      /* ========================== Spaces Page */
