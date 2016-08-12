@@ -18,6 +18,42 @@ module.exports = function(app, passport) {
 			})
 	})
 
+	app.delete('/spaces/delete/:id', function(req, res) {
+		db.Space.destroy(
+			{
+				where: {
+					id: req.params.id
+				}
+			}).then(function() {
+			req.flash('delete', 'Your space has been deleted');
+			res.redirect('/profile');
+		});
+	})
+
+	app.put('/spaces/edit/:id', function(req,res) {
+		db.Space.update(
+			{ 
+				address: req.body.address, 
+				city: req.body.city, 
+				state: req.body.state, 
+				zipcode: req.body.zipcode, 
+				type: req.body.type, 
+				description: req.body.description, 
+				price: req.body.price, 
+				from: req.body.from, 
+				to: req.body.to, 
+				photo: req.body.photo
+			}, 
+			{
+				where: {
+					id: req.params.id 
+				}
+			}).then(function() {
+			req.flash('edit', "Your space has been edited");
+			res.redirect('/profile');
+		});
+	})
+
 	app.get('/spaces', function(req, res){
 		if(req.user) {
 			req.user.space = {}
@@ -97,7 +133,7 @@ module.exports = function(app, passport) {
 					})
 				}
 				res.render('profile', {
-					user: req.user
+					user: req.user, message: req.flash()
 				});
 			})
 		});
