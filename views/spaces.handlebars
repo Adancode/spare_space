@@ -70,7 +70,7 @@ function createMap(lat, lng){
 					'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
 					'<br><a href="/space/{{this.id}}">Details</a>';
 
-					var markerTitle = "{{this.id}}";
+					var markerTitle = "{{this.type}}";
 
 					var label = "{{this.type}}".substring(0, 1);
 
@@ -102,7 +102,7 @@ function createMap(lat, lng){
 						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
 						'<br><a href="/space/{{this.id}}">Details</a>';
 
-					var markerTitle = "{{this.id}}";
+					var markerTitle = "{{this.type}}";
 
 					var infoWindow = new google.maps.InfoWindow({
 						content: markerInfo
