@@ -1,5 +1,6 @@
 
 <!--<div class="jumbotron text-center jumbotronProfile">-->
+{{> alerts}}
 <div class="container containerTopProfile">
      <div class="col-xs-12 col-md-6 form-style-top-div">
           <img src="{{user.pic}}" height="75px" width="75px" class="profileImage">
@@ -21,6 +22,9 @@
                     <p class="descriptionAll"><span class="descriptionFirst">Price: </span>${{this.space_price}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
+                    <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
+                      <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> DELETE!</button>
+                    </form>
                </div>
           {{/each}}
      </div>

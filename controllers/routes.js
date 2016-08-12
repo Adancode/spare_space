@@ -18,6 +18,18 @@ module.exports = function(app, passport) {
 			})
 	})
 
+	app.delete('/spaces/delete/:id', function(req, res) {
+		db.Space.destroy(
+			{
+				where: {
+					id: req.params.id
+				}
+			}).then(function() {
+			req.flash('delete', 'Your space has been deleted');
+			res.redirect('/profile');
+		});
+	})
+
 	app.get('/spaces', function(req, res){
 		if(req.user) {
 			req.user.space = {}
@@ -97,7 +109,7 @@ module.exports = function(app, passport) {
 					})
 				}
 				res.render('profile', {
-					user: req.user
+					user: req.user, message: req.flash()
 				});
 			})
 		});

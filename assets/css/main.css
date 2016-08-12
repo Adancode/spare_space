@@ -161,7 +161,7 @@
      }
 
      .containerTopProfile {
-          margin-top: 60px;
+          margin-top: 30px;
           margin-bottom: 20px;
      }
 
@@ -283,6 +283,9 @@
      }
 
      /* ========================== Profile Page */
+     .alert {
+      margin-top: 50px;
+     }
 
      /* ========================== Space/id Page */
 
