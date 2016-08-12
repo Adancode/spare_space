@@ -137,7 +137,7 @@
      }
 
      .containerTopProfile {
-          margin-top: 50px;
+          margin-top: 20px;
           margin-bottom: 20px;
      }
 
@@ -260,10 +260,8 @@
 
      /* ========================== Profile Page */
      .alert {
-      position: absolute;
-      top: 50px;
-      z-index: 1000;
-      left:115px;
+      margin-top: 55px;
+      margin-bottom: 0;
      }
 
      /* ========================== Space/id Page */
@@ -312,10 +310,15 @@
      }
 
      #searchList {
-          max-height: 500px;
+          max-height: 512px;
           overflow-y: auto;
           overflow-x: hidden;
           line-height: 13px;
+          padding-right: 0;
+     }
+
+     .gmap {
+      padding-left: 0;
      }
 
      .spacePic {
@@ -323,6 +326,10 @@
           clear:both;
           margin-right: 20px;
           margin-bottom: 20px;
+     }
+
+     .searchResult:first-child {
+      margin-top: 15px;
      }
 
      .searchResult {
@@ -357,6 +364,10 @@
 
 
      /* ========================== Spaces Page */
+
+     .top-row {
+      margin-top: 70px;
+     }
 
      /*===============  Media Queries ================*/
 

@@ -22,10 +22,77 @@
                     <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.space_price}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
+                    <button class="btn btn-info btn-sm" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                     <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
-                      <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> DELETE!</button>
+                      <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
                     </form>
                </div>
+                <div id="{{this.space_id}}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                <!-- Modal content-->
+                   <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Edit your space below.</h4>
+                      </div>
+                      <div class="modal-body">
+                           <form class="form form-style-8" action="spaces/edit/{{this.space_id}}?_method=PUT" method="POST">
+                             <div class="form-group">
+                               <label><h4>Address</h4></label>
+                               <input type="text" name="address" class="form-control" value="{{this.space_address}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>City</h4></label>
+                              <input type="text" name="city" class="form-control" value="{{this.space_city}}" required>
+                            </div>
+                             <div class="form-group">
+                              <label><h4>State</h4></label>
+                              <input type="text" name="state" class="form-control" value="{{this.space_state}}" required>
+                            </div>
+                             <div class="form-group">
+                              <label><h4>Zipcode</h4></label>
+                              <input type="text" name="zipcode" class="form-control" value="{{this.space_zipcode}}" required>
+                            </div>
+                            <div class="form-group">
+                              <label><h4>Type</h4></label>
+                              <select name="type" class="form-control" value="{{this.space_type}}">
+                                <option>Garage</option>
+                                <option>Shed</option>
+                                <option>Warehouse</option>
+                                <option>Closet</option>
+                                <option>Basement</option>
+                                <option>Attic</option>
+                              </select>
+                            </div>
+                             <div class="form-group">
+                               <label><h4>Description</h4></label>
+                               <textarea name="description" class="form-control" rows="8" maxlength="175">{{this.space_description}}</textarea>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>Monthly Price</h4></label>
+                              <input name="price" class="form-control" type="number" value="{{this.space_price}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>FROM</h4></label>
+                              <input name="from" class="form-control" type="date" value="{{this.space_from}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>TO</h4></label>
+                              <input name="to" class="form-control" type="date" value="{{this.space_to}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>Picture</h4></label>
+                              <input name="photo" class="form-control" type="url" value="{{this.space_photo}}">
+                             </div>
+                             <button class="btn btn-success addSpaceButton" type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Edit Space</button>
+                           </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                   </div>
+                  </div>
+                </div>
           {{/each}}
      </div>
 
@@ -107,15 +174,15 @@
              </div>
              <div class="form-group">
              	<label><h4>Monthly Price</h4></label>
-             	<input name="price" class="form-control" type="number">
+             	<input name="price" class="form-control" type="number" required>
              </div>
              <div class="form-group">
              	<label><h4>FROM</h4></label>
-             	<input name="from" class="form-control" type="date">
+             	<input name="from" class="form-control" type="date" required>
              </div>
              <div class="form-group">
              	<label><h4>TO</h4></label>
-             	<input name="to" class="form-control" type="date">
+             	<input name="to" class="form-control" type="date" required>
              </div>
              <div class="form-group">
              	<label><h4>Picture</h4></label>
@@ -131,4 +198,3 @@
   </div>
 </div>
 <!-- End Modal -->
-</div>
