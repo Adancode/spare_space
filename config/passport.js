@@ -24,6 +24,7 @@ module.exports = function(passport) {
 	}, function (token, refreshToken, profile, done) {
 	    //Using next tick to take advantage of async properties
 	    process.nextTick(function () {
+	    	console.log(profile);
 	        db.User.findOne( { where : { googleId : profile.id } }).then(function (user, err) {
 	            if(err) {
 	                return done(err);
@@ -35,7 +36,8 @@ module.exports = function(passport) {
 	              db.User.create({
 	                  googleId : profile.id,
 	                  token : token,
-	                  name : profile.displayName,
+	                  firstName : profile.name.givenName,
+	                  lastName: profile.name.familyName,
 	                  email : profile.emails[0].value,
 	                  pic : profile.photos[0].value
 	              }).then(function() {
@@ -53,12 +55,10 @@ module.exports = function(passport) {
 	})); 
 
 	passport.serializeUser(function(user, done) {
-		console.log('seqeulize: ' + user.id);
   	done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done) {
-		console.log(id);
 	  db.User.findOne({where: {id: id}}).then(function(user){
 	    done(null, user);
 	  }).error(function(err){
