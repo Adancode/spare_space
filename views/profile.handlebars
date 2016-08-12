@@ -7,8 +7,9 @@
      </div>
 </div>
 <div class="container">
+     <div class="row">
      <div class="col-xs-12 col-md-6">
-          <h3 class="profileLeftTitle">Your Portfolio</h3>
+          <h3 class="profileLeftTitle">Spaces You Are Advertising</h3>
           {{#each user.space}}
                <div class="well form-style-8">
                     <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
@@ -23,9 +24,40 @@
                </div>
           {{/each}}
      </div>
+
+
+<!-- Dummy Spaces You Have Rented -->
+
+     <div class="col-xs-12 col-md-6">
+          <h3 class="profileLeftTitle">Spaces You Have Reserved</h3>
+               <div class="well form-style-8">
+                    <img src="http://i67.tinypic.com/2u8h2tt.jpg" height="200px" width="200px" class="spaceImageProfile">
+                    <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">8910 Lamar Lane</a></p>
+                    <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78740</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Description: </span>This is a classy garage available now.</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Price: </span>$400</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Nov 20 2016</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Dec 10 2018</p>
+               </div>
+               <div class="well form-style-8">
+                    <img src="http://i64.tinypic.com/wj9bg5.jpg" height="200px" width="200px" class="spaceImageProfile">
+                    <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">5724 South Congress Avenue</a></p>
+                    <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78738</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Description: </span>This is the best garage in Austin, look at my reviews, they are the greatest reviews, which is to be expected from the greatest garage in Austin.</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Price: </span>$2000</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Mar 10 2016</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Mar 20 2017</p>
+               </div>
+
+     </div>
 </div>
 
 
+<!-- End Dummy Spaces You Have Rented -->
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -67,7 +99,7 @@
            	</div>
              <div class="form-group">
                <label><h4>Description</h4></label>
-               <textarea name="description" class="form-control" rows="8">Please give a brief description</textarea>
+               <textarea name="description" class="form-control" rows="8" placeholder="Please give a brief description"></textarea>
              </div>
              <div class="form-group">
              	<label><h4>Price</h4></label>
@@ -95,3 +127,4 @@
   </div>
 </div>
 <!-- End Modal -->
+</div>
