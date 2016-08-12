@@ -2,26 +2,18 @@
 	<h1 style="margin-top: 70px">{{user.space.address}} {{user.space.city}}, {{user.space.state}}</h1>
 </div>
 <div class="container">
-     <div class="col-xs-12 col-md-6 col-md-offset-3 form-style-9">
-     	<img src="{{user.space.photo}}" height="225px" width="225px" class="spaceImageProfileDetail">
-          <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{user.space.address}}</a></p>
-          <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{user.space.city}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{user.space.state}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{user.space.zipcode}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">Description: </span>{{user.space.description}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">Price: </span>${{user.space.price}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{user.space.from}}</p>
-          <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{user.space.to}}</p>
-          <form action="" method="POST" class="payButton">
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="pk_test_yj5RZqvZIFU3W1Z15LRbrh3u"
-              data-amount={{user.space.price}}00
-              data-name="Spare Space"
-              data-description="Widget"
-              data-image="/img/documentation/checkout/marketplace.png"
-              data-locale="auto">
-            </script>
-          </form>
-     </div>
+	<div class="col-xs-12 col-md-6 col-md-offset-3 form-style-9">
+			<img src="{{user.space.photo}}" height="225px" width="225px" class="spaceImageProfileDetail">
+	  <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{user.space.id}}">{{user.space.address}}</a></p>
+	  <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{user.space.city}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{user.space.state}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{user.space.zipcode}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">Description: </span>{{user.space.description}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">Price: </span>${{user.space.price}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{user.space.from}}</p>
+	  <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{user.space.to}}</p>
+  	<form action="spaces/delete/{{user.space.id}}?_method=DELETE" method="POST">
+			<button class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i> Buy</button>
+		</form>
+	</div>
 </div>

@@ -24,7 +24,6 @@ module.exports = function(passport) {
 	}, function (token, refreshToken, profile, done) {
 	    //Using next tick to take advantage of async properties
 	    process.nextTick(function () {
-	    	console.log(profile);
 	        db.User.findOne( { where : { googleId : profile.id } }).then(function (user, err) {
 	            if(err) {
 	                return done(err);
