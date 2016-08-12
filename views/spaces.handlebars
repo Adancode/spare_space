@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+<div class="container-fluid">
+     <div class="row" id="searchContainer">
+          <div class="col-md-12">
+               <form action="/spaces/search/" method="GET">
+                    <input type="text" name="city" placeholder="Enter a City">
+                    <button class="btn btn-success" type="submit">Search</button>
+               </form>
+          </div>
+     </div>
+</div>
+=======
 <div id="searchContainer">
 	<div class="row">
 		<div class="col-12 md">
@@ -7,24 +19,28 @@
 			</form>
 		</div>
 	</div>
+>>>>>>> master
 
+<div class="container-fluid results">
 	<div class="row">
-		<div class="col-6 md" id="searchList">
+		<div class="col-md-4 col-sm-5" id="searchList">
 			{{#if user}}
 				{{#each user.space}}
 					<div class="searchResult">
-						<img src="{{this.photo}}" height="150px" width="150px">
-						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
-						<h5>{{this.city}}, {{this.state}}</h5>
-						<h5>{{this.zipcode}}</h5>
-						<h5>${{this.price}} / month</h5>
-						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
+						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
+						<p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+						<p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
+
 					</div>
 				{{/each}}
 			{{else}}
 				{{#each space}}
-					<div class="searchResult">
-						<img src="{{this.photo}}" height="150px" width="150px" style="float: left">
+					<div class="searchResult result">
+						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
 						<h5>{{this.type}}</h5>
 						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
@@ -35,8 +51,8 @@
 				{{/each}}
 			{{/if}}
 		</div>
-		<div class="col-6 md">
-			<div id="map"></div>
+		<div class="col-md-8 col-sm-7">
+			<div class="form-style-8" id="map"></div>
 		</div>
 	</div>
 </div>
@@ -122,7 +138,7 @@ function createMap(lat, lng){
 }
 
 function initMap(){
-	
+
 	var defaultLat;
 	var defaultLng;
 
