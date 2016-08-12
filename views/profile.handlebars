@@ -18,9 +18,9 @@
           {{#each user.space}}
                <div class="well form-style-8">
                     {{#if this.space_status}}
-                      <h1 class="text-danger">Inactive</h1>
+                      <h1 class="text-success">Available for Rent</h1>
                     {{else}}
-                      <h1 class="text-success">Active</h1>
+                      <h1 class="text-danger">Booked</h1>
                     {{/if}}
                     <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
                     <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{this.space_address}}</a></p>
