@@ -137,7 +137,7 @@
      }
 
      .containerTopProfile {
-          margin-top: 30px;
+          margin-top: 50px;
           margin-bottom: 20px;
      }
 
@@ -260,7 +260,10 @@
 
      /* ========================== Profile Page */
      .alert {
-      margin-top: 50px;
+      position: absolute;
+      top: 50px;
+      z-index: 1000;
+      left:115px;
      }
 
      /* ========================== Space/id Page */
