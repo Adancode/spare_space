@@ -126,6 +126,7 @@
      }
 
      #searchList{
+          max-height: 700px;
           overflow-y: auto;
           overflow-x: hidden;
           float: left;
