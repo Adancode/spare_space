@@ -14,24 +14,25 @@
 			{{#if user}}
 				{{#each user.space}}
 					<div class="searchResult">
-						<img src="{{this.photo}}" height="150px" width="150px">
-						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
+						<img src="{{this.photo}}" height="150px" width="150px" style="float: left">
+						<h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
 						<h5>{{this.zipcode}}</h5>
 						<h5>${{this.price}} / month</h5>
 						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
+						<a href="space/{{this.id}}">Details</a>
 					</div>
 				{{/each}}
 			{{else}}
 				{{#each space}}
 					<div class="searchResult">
 						<img src="{{this.photo}}" height="150px" width="150px" style="float: left">
-						<h5>{{this.type}}</h5>
-						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
+						<h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
 						<h5>{{this.zipcode}}</h5>
 						<h5>${{this.price}} / month</h5>
 						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
+						<a href="space/{{this.id}}">Details</a>
 					</div>
 				{{/each}}
 			{{/if}}

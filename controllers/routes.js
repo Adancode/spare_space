@@ -25,8 +25,10 @@ module.exports = function(app, passport) {
 
 			}).then(function(data) {
 				for(var i = 0; i < data.length; i++){
-					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
- 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+					var start = data[i].dataValues.from.toString().substring(4, 15);
+					var end = data[i].dataValues.to.toString().substring(4, 15);
+					data[i].dataValues.from = start.substring(0, 6) + ',' + start.substring(6, start.length);
+ 					data[i].dataValues.to = end.substring(0, 6) + ',' + end.substring(6, end.length);
  				}
 				req.user.space = data;
 				res.render('spaces', {user: req.user});
@@ -36,9 +38,10 @@ module.exports = function(app, passport) {
 
 			}).then(function(data) {
 				for(var i = 0; i < data.length; i++){
-					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
- 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
- 				}
+					var start = data[i].dataValues.from.toString().substring(4, 15);
+					var end = data[i].dataValues.to.toString().substring(4, 15);
+					data[i].dataValues.from = start.substring(0, 6) + ',' + start.substring(6, start.length);
+ 					data[i].dataValues.to = end.substring(0, 6) + ',' + end.substring(6, end.length);			}
 				res.render('spaces', {space: data});
 			})
 		}
