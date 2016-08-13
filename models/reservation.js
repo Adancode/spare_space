@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     from: DataTypes.DATE,
     to: DataTypes.DATE,
     status: DataTypes.BOOLEAN,
-    name: DataTypes.STRING
+    photo: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
