@@ -138,9 +138,10 @@ module.exports = function(app, passport) {
 				query[key] = req.query[key];
 			}
 		}
-		console.log(query);
-		db.Space.findAll({where: query
-
+		db.Space.findAll({
+			where: query,
+			limit: 15,
+			order: 'price'
 		}).then(function(data){
 			for(var i = 0; i < data.length; i++){
 				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
