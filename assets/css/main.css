@@ -123,9 +123,6 @@
           margin-top: 60px;
      }
 
-
-
-
      /* ========================== Profile Page */
 
      .owner {
@@ -349,7 +346,7 @@
      }
 
      .gmap {
-      padding-left: 0;
+      /*padding-left: 0;*/
      }
 
      .spacePic {

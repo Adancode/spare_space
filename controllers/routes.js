@@ -96,8 +96,10 @@ module.exports = function(app, passport) {
 			}).then(function(data) {
 				console.log(data);
 				for(var i = 0; i < data.length; i++){
-					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
- 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
+					var start = data[i].dataValues.from.toString().substring(4, 15);
+					var end = data[i].dataValues.to.toString().substring(4, 15);
+					data[i].dataValues.from = start.substring(0, 6) + ',' + start.substring(6, start.length);
+ 					data[i].dataValues.to = end.substring(0, 6) + ',' + end.substring(6, end.length);
  				}
 				req.user.space = data;
 				res.render('spaces', {user: req.user});
@@ -110,9 +112,10 @@ module.exports = function(app, passport) {
 			}).then(function(data) {
 				console.log(data);
 				for(var i = 0; i < data.length; i++){
-					data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
- 					data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
- 				}
+					var start = data[i].dataValues.from.toString().substring(4, 15);
+					var end = data[i].dataValues.to.toString().substring(4, 15);
+					data[i].dataValues.from = start.substring(0, 6) + ',' + start.substring(6, start.length);
+ 					data[i].dataValues.to = end.substring(0, 6) + ',' + end.substring(6, end.length);			}
 				res.render('spaces', {space: data});
 			})
 		}
@@ -129,8 +132,16 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/spaces/search/', function(req, res){
-		db.Space.findAll({where: {city: req.query.city}
-
+		var query = {};
+		for(key in req.query){
+			if(req.query[key] != ''){
+				query[key] = req.query[key];
+			}
+		}
+		db.Space.findAll({
+			where: query,
+			limit: 15,
+			order: 'price'
 		}).then(function(data){
 			for(var i = 0; i < data.length; i++){
 				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);

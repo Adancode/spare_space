@@ -7,6 +7,7 @@
                     <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
                     <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
                </form>
+               <a class="btn btn-success modalButton" href="#" data-toggle="modal" data-target="#searchModal">Advanced Search</a>
           </div>
           <!--</div>-->
      </div>
@@ -25,7 +26,6 @@
 						<p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
 						<p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
                               <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
-
 					</div>
 				{{/each}}
 			{{else}}
@@ -50,6 +50,22 @@
 		</div>
 		<div class="col-xs-12 col-sm-7 col-md-8 gmap">
 			<div class="form-style-8" id="map"></div>
+		</div>
+		<div id="searchModal" class="modal fade">
+           <form action="/spaces/search/" method="GET" class="form-inline">
+                <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
+                <input type="text" name="zipcode" placeholder="Enter a Zipcode" class="form-control inputBox">
+                <select name="type" placeholder="Select a Type" class="form-control inputBox">
+                	<option selected disabled>Select a Type</option>
+                	<option>Attic</option>
+                	<option>Basement</option>
+                	<option>Closet</option>
+                	<option>Garage</option>
+                	<option default>Shed</option>
+                	<option>Warehouse</option>
+                </select>
+                <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+           </form>
 		</div>
 	</div>
 </div>
