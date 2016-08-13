@@ -8,3 +8,8 @@ Adam Camacho
 William Kernan  
 Justin LeBlanc  
 Conor Mullen  
+
+[Google Slides Presentation] (https://docs.google.com/presentation/d/1r1QMvWP_LK-5rsoMeBtv57V_c8i_YAxxZyYbg98MdsU/edit#slide=id.gd9c453428_0_16)
+
+[Spare Space, deployed in Heroku]
+(https://spare-space.herokuapp.com/)
