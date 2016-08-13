@@ -45,7 +45,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
-      name: {
+      photo: {
         type: Sequelize.STRING
       },
       createdAt: {

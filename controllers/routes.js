@@ -75,7 +75,7 @@ module.exports = function(app, passport) {
 				}
 			}).then(function(data) {
 				db.Reservation.create({
-					address: data.address, ownerFirst: data.ownerFirst, ownerLast: data.ownerLast, ownerEmail: data.ownerEmail, city: data.city, state: data.state, zipcode: data.zipcode, description: data.description, price: data.price, from: data.from, to: data.to})
+					address: data.address, ownerFirst: data.ownerFirst, ownerLast: data.ownerLast, ownerEmail: data.ownerEmail, city: data.city, state: data.state, zipcode: data.zipcode, description: data.description, price: data.price, photo: data.photo, from: data.from, to: data.to})
 				.then(function(res) {
 					user.addReservation(res);
 				}).then(function() {
