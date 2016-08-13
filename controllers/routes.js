@@ -115,7 +115,14 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/spaces/search/', function(req, res){
-		db.Space.findAll({where: {city: req.query.city}
+		var query = {};
+		for(key in req.query){
+			if(req.query[key] != ''){
+				query[key] = req.query[key];
+			}
+		}
+		console.log(query);
+		db.Space.findAll({where: query
 
 		}).then(function(data){
 			for(var i = 0; i < data.length; i++){
