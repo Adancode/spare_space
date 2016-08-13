@@ -6,8 +6,9 @@
                <form action="/spaces/search/" method="GET" class="form-inline">
                     <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
                     <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    <a class="btn btn-success advancedSearchButton" href="#" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span> Advanced</a>
                </form>
-               <a class="btn btn-success modalButton" href="#" data-toggle="modal" data-target="#searchModal">Advanced Search</a>
+
           </div>
           <!--</div>-->
      </div>
@@ -15,7 +16,7 @@
 
 <div class="container-fluid results">
 	<div class="row">
-		<div class="col-xs-12 col-sm-5 col-md-4" id="searchList">
+		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4" id="searchList">
 			{{#if user}}
 				{{#each user.space}}
 					<div class="searchResult">
@@ -48,10 +49,23 @@
 				{{/each}}
 			{{/if}}
 		</div>
-		<div class="col-xs-12 col-sm-7 col-md-8 gmap">
+		<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 gmap">
 			<div class="form-style-8" id="map"></div>
 		</div>
-		<div id="searchModal" class="modal fade">
+
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="searchModal" class="modal fade searchPageModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+<!-- Modal content-->
+   <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Advanced Search</h4>
+      </div>
+      <div class="modal-body">
            <form action="/spaces/search/" method="GET" class="form-inline">
                 <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
                 <input type="text" name="zipcode" placeholder="Enter a Zipcode" class="form-control inputBox">
@@ -76,9 +90,15 @@
                 </select>
                 <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
            </form>
-		</div>
-	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+   </div>
+  </div>
 </div>
+<!-- End Modal -->
+
 <script type="text/javascript">
 var map;
 var geocoder;
