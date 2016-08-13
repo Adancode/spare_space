@@ -221,10 +221,14 @@ function createMap(lat, lng){
 function initMap(){
 
 	var thisURL = window.location.href;
-	var searchTerm = thisURL.split('/');
-	searchTerm = searchTerm[searchTerm.length - 1];
-	searchTerm = searchTerm.split('=');
-	searchTerm = searchTerm[searchTerm.length - 1];
+	var searchList = thisURL.split('/');
+	searchList = searchList[searchList.length - 1].split('&');
+	var searchTerm = '';
+	for(var i = 0; i < searchList.length; i++){
+		if(searchList[i].split('=')[0] == '?city' || searchList[i].split('=')[0] == 'zipcode'){
+			searchTerm += searchList[i].split('=')[1] + ' ';
+		}
+	}
 
 	var defaultLat;
 	var defaultLng;
@@ -240,7 +244,15 @@ function initMap(){
 		createMap(30.2672, -97.7431);
 	};
 
-	if(searchTerm == 'spaces' || searchTerm == ''){
+	var blankTerm = true;
+
+	for(var i = 0; i < searchTerm.length; i++){
+		if(searchTerm[i] != ' '){
+			blankTerm = false;
+		}
+	}
+
+	if(blankTerm){
 		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 	}
 	else{
