@@ -284,6 +284,8 @@
           box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
          -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
          -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.42);
+         height: 355px;
+         width: 355px;
      }
 
      .form-style-9{
@@ -323,8 +325,34 @@
 
      /* ========================== Space/id Page */
 
+     /* ========================== Detail Space/id Page */
      .firstDes {
       margin-top: 0;
+     }
+
+     .form-style-10 {
+         font-family: 'Open Sans Condensed', arial, sans;
+         /*width: 500px;*/
+         padding: 30px;
+         background: #FFFFFF;
+         /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);*/
+
+     }
+
+     /* ========================== Detail Space/id Page */
+
+     form-style-8{
+         font-family: 'Open Sans Condensed', arial, sans;
+         /*width: 500px;*/
+         padding: 30px;
+         background: #FFFFFF;
+         margin: 10px auto;
+         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+
      }
 
      /* ========================== Spaces Page */
@@ -442,6 +470,10 @@
         }
         .gmap {
              /*margin-top: 40px;*/
+        }
+        .spaceImageProfileDetail {
+            height: 400px;
+            width: 400px;
         }
     }
 
