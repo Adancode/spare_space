@@ -129,7 +129,12 @@ function createMap(lat, lng){
 					unitSystem: google.maps.UnitSystem.IMPERIAL
 				}, function callback(response, status){
 
-				var distance = response.rows[0].elements[0].distance.text;
+				if(response.rows[0].elements[0].status == 'OK'){
+					var distance = response.rows[0].elements[0].distance.text;
+				}
+				else{
+					var distance = "Unknown distance";
+				}
 
 				geocoder.geocode({'address': response.destinationAddresses[0]}, function(results, status){
 					if(status == 'OK'){
@@ -174,7 +179,12 @@ function createMap(lat, lng){
 					unitSystem: google.maps.UnitSystem.IMPERIAL
 				}, function callback(response, status){
 
-				var distance = response.rows[0].elements[0].distance.text;
+				if(response.rows[0].elements[0].status == 'OK'){
+					var distance = response.rows[0].elements[0].distance.text;
+				}
+				else{
+					var distance = "Unknown distance";
+				}
 
 				geocoder.geocode({'address': response.destinationAddresses[0]}, function(results, status){
 					if(status == 'OK'){
