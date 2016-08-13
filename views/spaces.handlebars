@@ -66,7 +66,6 @@
                 </select>
                 <select name="sort" class="form-control inputBox">
                 	<option selected disabled>Sort by</option>
-                	<option>Distance</option>
                 	<option>Price</option>
                 </select>
                 <select name="limit" class="form-control inputBox">
@@ -191,6 +190,12 @@ function createMap(lat, lng){
 
 function initMap(){
 
+	var thisURL = window.location.href;
+	var searchTerm = thisURL.split('/');
+	searchTerm = searchTerm[searchTerm.length - 1];
+	searchTerm = searchTerm.split('=');
+	searchTerm = searchTerm[searchTerm.length - 1];
+
 	var defaultLat;
 	var defaultLng;
 
@@ -202,9 +207,22 @@ function initMap(){
 
 	var geoError = function(error){
 		console.log("Error occurred. Error code: " + error.code);
+		createMap(30.2672, -97.7431);
 	};
 
-	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+	if(searchTerm == 'spaces' || searchTerm == ''){
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+	}
+	else{
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode({'address': searchTerm.toString()}, function(results, status){
+			defaultLat = results[0].geometry.location.lat();
+			defaultLng = results[0].geometry.location.lng();
+			createMap(defaultLat, defaultLng);
+		});	
+	}
+
 }
 
 </script>
