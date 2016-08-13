@@ -92,7 +92,9 @@ module.exports = function(app, passport) {
 			db.Space.findAll({
 				where: {
 					status: true
-				}
+				},
+				limit: 15,
+				order: 'price'
 			}).then(function(data) {
 				console.log(data);
 				for(var i = 0; i < data.length; i++){
@@ -108,7 +110,9 @@ module.exports = function(app, passport) {
 			db.Space.findAll({
 				where: {
 					status: true
-				}
+				},
+				limit: 15,
+				order: 'price'
 			}).then(function(data) {
 				console.log(data);
 				for(var i = 0; i < data.length; i++){
@@ -133,22 +137,31 @@ module.exports = function(app, passport) {
 
 	app.get('/spaces/search/', function(req, res){
 		var query = {};
+		var sortBy = "price";
+		var limit = 15;
 		for(key in req.query){
-			if(req.query[key] != ''){
+			if(req.query[key] != '' && key != "sort" && key != "limit"){
 				query[key] = req.query[key];
 			}
 		}
+
+		if(req.query.limit != '' && req.query.limit != undefined){
+			limit = parseInt(req.query.limit);
+		}
+
+		if(req.query.sort != 'price' && req.query.sort != undefined){
+			sortBy = req.query.sort;
+		}
 		db.Space.findAll({
 			where: query,
-			limit: 15,
-			order: 'price'
+			limit: limit,
+			order: sortBy
 		}).then(function(data){
 			for(var i = 0; i < data.length; i++){
 				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
 				data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
 			}
 			res.render('spaces', {space: data});
-
 		});
 	});
 
