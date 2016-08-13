@@ -21,7 +21,7 @@
 				{{#each user.space}}
 					<div class="searchResult">
 						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
-						<p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="/space/{{this.id}}" > {{this.address}}</a></p>
 						<p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
 						<p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
 						<p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
@@ -33,14 +33,14 @@
 				{{#each space}}
 					<div class="searchResult result">
 						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
-                              <p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="/space/{{this.id}}" > {{this.address}}</a></p>
                               <p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
                               <p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
                               <p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
                               <p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
                               <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
 						<!--<h5>{{this.type}}</h5>
-						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
+						<a href="/space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
 						<h5>{{this.zipcode}}</h5>
 						<h5>${{this.price}} / month</h5>
@@ -70,24 +70,23 @@
                 <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
                 <input type="text" name="zipcode" placeholder="Enter a Zipcode" class="form-control inputBox">
                 <select name="type" class="form-control inputBox">
-                    <option selected disabled>Select a Type</option>
-                    <option>Attic</option>
-                    <option>Basement</option>
-                    <option>Closet</option>
-                    <option>Garage</option>
-                    <option default>Shed</option>
-                    <option>Warehouse</option>
+                	<option selected disabled>Select a Type</option>
+                	<option>Attic</option>
+                	<option>Basement</option>
+                	<option>Closet</option>
+                	<option>Garage</option>
+                	<option default>Shed</option>
+                	<option>Warehouse</option>
                 </select>
                 <select name="sort" class="form-control inputBox">
-                    <option selected disabled>Sort by</option>
-                    <option>Distance</option>
-                    <option>Price</option>
+                	<option selected disabled>Sort by</option>
+                	<option>Price</option>
                 </select>
                 <select name="limit" class="form-control inputBox">
-                    <option selected disabled># of Results</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>50</option>
+                	<option selected disabled># of Results</option>
+                	<option>10</option>
+                	<option>20</option>
+                	<option>50</option>
                 </select>
                 <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
            </form>
@@ -119,69 +118,117 @@ function createMap(lat, lng){
 	{{#if user}}
 		{{#each user.space}}
 			var address = "{{this.address}}";
-			geocoder.geocode({'address': address}, function(results, status){
-				if(status == 'OK'){
-					var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-					'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
-					'<br><a href="/space/{{this.id}}">Details</a>';
+			var origin = new google.maps.LatLng(lat, lng);
+			var service = new google.maps.DistanceMatrixService();
 
-					var markerTitle = "{{this.type}}";
+			service.getDistanceMatrix(
+				{
+					origins: [origin],
+					destinations: [address],
+					travelMode: 'DRIVING',
+					unitSystem: google.maps.UnitSystem.IMPERIAL
+				}, function callback(response, status){
 
-					var label = "{{this.type}}".substring(0, 1);
-
-					var infoWindow = new google.maps.InfoWindow({
-						content: markerInfo
-					});
-
-					var label = "{{this.type}}".substring(0, 1);
-
-					var marker = new google.maps.Marker({
-						map: map,
-						position: results[0].geometry.location,
-						label: label,
-						title: markerTitle
-					});
-
-					marker.addListener('click', function(){
-						infoWindow.open(map, marker);
-					});
+				if(response.rows[0].elements[0].status == 'OK'){
+					var distance = response.rows[0].elements[0].distance.text;
 				}
+				else{
+					var distance = "Unknown distance";
+				}
+
+				geocoder.geocode({'address': response.destinationAddresses[0]}, function(results, status){
+					if(status == 'OK'){
+						var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
+						'<br>' + distance + ' away<br><a href="/space/{{this.id}}">Details</a>';
+
+
+						var infoWindow = new google.maps.InfoWindow({
+							content: markerInfo
+						});
+
+						var markerTitle = "{{this.type}}";
+
+						var label = "{{this.type}}"[0];
+
+						var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location,
+							label: label,
+							title: markerTitle
+						});
+
+						marker.addListener('click', function(){
+							infoWindow.open(map, marker);
+						});
+					}
+				});
 			});
 		{{/each}}
 	{{else}}
 		{{#each space}}
 			var address = "{{this.address}}";
-			geocoder.geocode({'address': address}, function(results, status){
-				if(status == 'OK'){
-					var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
-						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
-						'<br><a href="/space/{{this.id}}">Details</a>';
+			var origin = new google.maps.LatLng(lat, lng);
+			var service = new google.maps.DistanceMatrixService();
 
-					var markerTitle = "{{this.type}}";
+			service.getDistanceMatrix(
+				{
+					origins: [origin],
+					destinations: [address],
+					travelMode: 'DRIVING',
+					unitSystem: google.maps.UnitSystem.IMPERIAL
+				}, function callback(response, status){
 
-					var infoWindow = new google.maps.InfoWindow({
-						content: markerInfo
-					});
-
-					var label = "{{this.type}}".substring(0, 1);
-
-					var marker = new google.maps.Marker({
-						map: map,
-						position: results[0].geometry.location,
-						label: label,
-						title: markerTitle
-					});
-
-					marker.addListener('click', function(){
-						infoWindow.open(map, marker);
-					});
+				if(response.rows[0].elements[0].status == 'OK'){
+					var distance = response.rows[0].elements[0].distance.text;
 				}
+				else{
+					var distance = "Unknown distance";
+				}
+
+				geocoder.geocode({'address': response.destinationAddresses[0]}, function(results, status){
+					if(status == 'OK'){
+						var markerInfo = '<div class="markerInfo" style="width: 200px, height:200px">' +
+						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
+						'<br>' + distance + '<br><a href="/space/{{this.id}}">Details</a>';
+
+
+						var infoWindow = new google.maps.InfoWindow({
+							content: markerInfo
+						});
+
+						var markerTitle = "{{this.type}}";
+
+						var label = "{{this.type}}"[0];
+
+						var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location,
+							label: label,
+							title: markerTitle
+						});
+
+						marker.addListener('click', function(){
+							infoWindow.open(map, marker);
+						});
+					}
+				});
 			});
 		{{/each}}
 	{{/if}}
 }
 
 function initMap(){
+
+	var thisURL = window.location.href;
+	var searchList = thisURL.split('/');
+	searchList = searchList[searchList.length - 1].split('&');
+	var searchTerm = '';
+	for(var i = 0; i < searchList.length; i++){
+		if(searchList[i].split('=')[0] == '?city' || searchList[i].split('=')[0] == 'zipcode'){
+			searchTerm += searchList[i].split('=')[1] + ' ';
+		}
+	}
 
 	var defaultLat;
 	var defaultLng;
@@ -194,9 +241,30 @@ function initMap(){
 
 	var geoError = function(error){
 		console.log("Error occurred. Error code: " + error.code);
+		createMap(30.2672, -97.7431);
 	};
 
-	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+	var blankTerm = true;
+
+	for(var i = 0; i < searchTerm.length; i++){
+		if(searchTerm[i] != ' '){
+			blankTerm = false;
+		}
+	}
+
+	if(blankTerm){
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+	}
+	else{
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode({'address': searchTerm.toString()}, function(results, status){
+			defaultLat = results[0].geometry.location.lat();
+			defaultLng = results[0].geometry.location.lng();
+			createMap(defaultLat, defaultLng);
+		});	
+	}
+
 }
 
 </script>
