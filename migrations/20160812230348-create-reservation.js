@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Spaces', {
+    return queryInterface.createTable('Reservations', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,25 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerFirst: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       ownerLast: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       ownerEmail: {
-        type: Sequelize.STRING,
-      },
-      buyerFirst: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      buyerLast: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      buyerEmail: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.STRING
       },
       address: {
         type: Sequelize.STRING
@@ -39,9 +27,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       zipcode: {
-        type: Sequelize.STRING
-      },
-      type: {
         type: Sequelize.STRING
       },
       description: {
@@ -60,7 +45,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
-      photo: {
+      name: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -81,6 +66,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Spaces');
+    return queryInterface.dropTable('Reservations');
   }
 };

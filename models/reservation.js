@@ -1,30 +1,26 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Space = sequelize.define('Space', {
+  var Reservation = sequelize.define('Reservation', {
     address: DataTypes.STRING,
     ownerFirst: DataTypes.STRING,
     ownerLast: DataTypes.STRING,
     ownerEmail: DataTypes.STRING,
-    buyerFirst: DataTypes.STRING,
-    buyerLast: DataTypes.STRING,
-    buyerEmail: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     zipcode: DataTypes.STRING,
-    type: DataTypes.STRING,
     description: DataTypes.TEXT,
     price: DataTypes.INTEGER,
     from: DataTypes.DATE,
     to: DataTypes.DATE,
     status: DataTypes.BOOLEAN,
-    photo: DataTypes.STRING
+    name: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
+        Reservation.belongsTo(models.User);
         // associations can be defined here
-        Space.belongsTo(models.User);
       }
     }
   });
-  return Space;
+  return Reservation;
 };

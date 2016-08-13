@@ -28,8 +28,12 @@
           color: #333333;
           height: 50px;
           z-index: 1000;
-          padding-top: 16px;
+/*          padding-top: 16px;*/
 
+     }
+
+     .footer {
+      margin-top: 15px;
      }
 
      #itemOneFooter {
@@ -120,6 +124,15 @@
      }
 
      /* ========================== Profile Page */
+
+     .owner {
+      margin-top: 0;
+      margin-bottom: 0;
+     }
+
+     .owner-email {
+      margin-top: 0;
+     }
 
      .form-style-8{
          font-family: 'Open Sans Condensed', arial, sans;
@@ -294,6 +307,10 @@
           margin-top: 20px;
      }
 
+     .stripe {
+      margin-top: 40px;
+     }
+
      .editButton {
           margin-top: 10px;
           float: left;
@@ -306,10 +323,14 @@
 
      /* ========================== Space/id Page */
 
+     .firstDes {
+      margin-top: 0;
+     }
+
      /* ========================== Spaces Page */
 
      #searchContainer{
-          margin-top: 80px;
+          margin-top: 85px;
           /*margin: 40px auto auto;*/
           /*height: 700px;*/
           margin-bottom: -40px;

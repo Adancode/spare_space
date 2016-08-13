@@ -1,5 +1,4 @@
 
-<!--<div class="jumbotron text-center jumbotronProfile">-->
 {{> alerts}}
 <div class="container containerTopProfile">
      <div class="row">
@@ -20,21 +19,28 @@
                     {{#if this.space_status}}
                       <h1 class="text-success">Available for Rent</h1>
                     {{else}}
-                      <h1 class="text-danger">Booked</h1>
+                      <h1 class="text-danger owner">Booked by {{this.space_buyerFirst}}</h1>
+                      <h3 class="owner-email">email: <a href="mailto:{{this.space_buyerEmail}}">{{this.space_buyerEmail}}</a></h3>
                     {{/if}}
-                    <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
-                    <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{this.space_address}}</a></p>
-                    <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{this.space_city}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{this.space_state}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{this.space_zipcode}}</p>
-                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>{{this.space_description}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.space_price}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
-                    <button class="btn btn-info btn-md editButton" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                    <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
-                      <button class="btn btn-danger btn-md deleteButton" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                    </form>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
+                      </div>
+                      <div class="col-md-6">
+                        <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{this.space_address}}</a></p>
+                        <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{this.space_city}}</p>
+                        <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{this.space_state}}</p>
+                        <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{this.space_zipcode}}</p>
+                        <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>{{this.space_description}}</p>
+                        <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.space_price}}</p>
+                        <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
+                        <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
+                        <button class="btn btn-info btn-md editButton" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                        <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
+                          <button class="btn btn-danger btn-md deleteButton" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                        </form>
+                      </div>
+                    </div>
                </div>
                 <div id="{{this.space_id}}" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -106,33 +112,34 @@
      </div>
 
 
-<!-- Dummy Spaces You Have Rented -->
+<!-- Spaces You Have Reserved -->
 
      <div class="col-xs-12 col-md-6">
           <h3 class="profileLeftTitle">Spaces You Have Reserved</h3>
+              {{#each user.res}}
                <div class="well form-style-8">
-                    <img src="http://i67.tinypic.com/2u8h2tt.jpg" height="200px" width="200px" class="spaceImageProfile">
-                    <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">8910 Lamar Lane</a></p>
-                    <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78740</p>
-                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>This is a classy garage available now.</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>$400</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Nov 20 2016</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Dec 10 2018</p>
+                  {{#if this.res_ownerFirst}}
+                    <h1 class="owner">Owned by {{this.res_ownerFirst}}</h1>
+                    <h3 class="owner-email">Email: <a href="mailto:{{this.res_ownerEmail}}">{{this.res_ownerEmail}}</a></h3>
+                  {{else}}
+                  {{/if}}
+                  <div class="row">
+                    <div class="col-md-6">
+                      <img src="{{this.res_photo}}" height="200px" width="200px" class="spaceImageProfile">
+                    </div>
+                    <div class="col-md-6">
+                      <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.res_id}}">{{this.res_address}}</a></p>
+                      <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{this.res_city}}</p>
+                      <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{this.res_state}}</p>
+                      <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{this.res_zipcode}}</p>
+                      <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>{{this.res_description}}</p>
+                      <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.res_price}}</p>
+                      <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.res_from}}</p>
+                      <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.res_to}}</p>
+                    </div>
+                  </div>
                </div>
-               <div class="well form-style-8">
-                    <img src="http://i64.tinypic.com/wj9bg5.jpg" height="200px" width="200px" class="spaceImageProfile">
-                    <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">5724 South Congress Avenue</a></p>
-                    <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78738</p>
-                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>This is the best garage in Austin, look at my reviews, they are the greatest reviews.</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>$2000</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Mar 10 2016</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Mar 20 2017</p>
-               </div>
-
+               {{/each}}
      </div>
 </div>
 
