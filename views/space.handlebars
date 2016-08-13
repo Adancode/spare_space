@@ -1,27 +1,37 @@
 <div class="text-center spaceTitle">
-	<h1 style="margin-top: 70px">{{user.space.address}} {{user.space.city}}, {{user.space.state}}</h1>
+	<h1 class="descriptionFirst" style="margin-top: 70px">{{user.space.address}} {{user.space.city}}, {{user.space.state}} {{user.space.zipcode}}</h1>
+	{{#if user.space.status}}
+		<h3 class="text-success">Is Available!</h3>
+	{{else}}
+		<h3 class="text-danger">Is Unvailable</h3>
+	{{/if}}
 </div>
 <div class="container">
-	<div class="col-xs-12 col-md-6 col-md-offset-3 form-style-9">
-			<img src="{{user.space.photo}}" height="225px" width="225px" class="spaceImageProfileDetail">
-	  <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="{{user.space.id}}">{{user.space.address}}</a></p>
-	  <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{user.space.city}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{user.space.state}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{user.space.zipcode}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">Description: </span>{{user.space.description}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">Price: </span>${{user.space.price}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{user.space.from}}</p>
-	  <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{user.space.to}}</p>
-	  <form action="/transactions/{{user.space.id}}?_method=PUT" method="POST">
-		  <script
-		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		    data-key="pk_test_yj5RZqvZIFU3W1Z15LRbrh3u"
-		    data-amount="{{user.space.price}}00"
-		    data-name="Spare Space"
-		    data-description="2 widgets"
-		    data-image="/img/documentation/checkout/marketplace.png"
-		    data-locale="auto">
-		  </script>
-		</form>
-	</div>
+{{!-- 	<div class="col-xs-12 col-md-6 col-md-offset-3 form-style-9"> --}}
+		<div class="row">
+			<div class="col-md-6">
+				<img src="{{user.space.photo}}" height="400px" width="400px" class="spaceImageProfileDetail">
+			</div>
+			<div class="col-md-6">
+			  <h1 class="firstDes"><span class="descriptionFirst">Description: </span>{{user.space.description}}</h1>
+			  <h1><span class="descriptionFirst">Price: </span>${{user.space.price}} / monthly</h1>
+			  <h1><span class="descriptionFirst">Available From: </span>{{user.space.from}}</h1>
+			  <h1><span class="descriptionFirst">Available Until: </span>{{user.space.to}}</h1>
+	  	  {{#if user.space.status}}
+				  <form action="/transactions/{{user.space.id}}?_method=PUT" method="POST" class="stripe">
+					  <script
+					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					    data-key="pk_test_yj5RZqvZIFU3W1Z15LRbrh3u"
+					    data-amount="{{user.space.price}}00"
+					    data-name="Spare Space"
+					    data-description="Purchase your space!"
+					    data-image="../assets/images/ss.png"
+					    data-locale="auto">
+					  </script>
+					</form>
+				{{else}}
+				{{/if}}
+		  </div>
+	  <div>
+{{!-- 	</div> --}}
 </div>
