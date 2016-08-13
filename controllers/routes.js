@@ -136,7 +136,7 @@ module.exports = function(app, passport) {
 	})
 
 	app.get('/spaces/search/', function(req, res){
-		var query = {};
+		var query = {status: true};
 		var sortBy = "price";
 		var limit = 15;
 		for(key in req.query){
