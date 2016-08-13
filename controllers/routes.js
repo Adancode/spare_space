@@ -18,12 +18,66 @@ module.exports = function(app, passport) {
 			})
 	})
 
+	app.delete('/spaces/delete/:id', function(req, res) {
+		db.Space.destroy(
+			{
+				where: {
+					id: req.params.id
+				}
+			}).then(function() {
+			req.flash('delete', 'Your space has been deleted');
+			res.redirect('/profile');
+		});
+	})
+
+	app.put('/spaces/edit/:id', function(req,res) {
+		db.Space.update(
+			{ 
+				address: req.body.address, 
+				city: req.body.city, 
+				state: req.body.state, 
+				zipcode: req.body.zipcode, 
+				type: req.body.type, 
+				description: req.body.description, 
+				price: req.body.price, 
+				from: req.body.from, 
+				to: req.body.to, 
+				photo: req.body.photo
+			}, 
+			{
+				where: {
+					id: req.params.id 
+				}
+			}).then(function() {
+			req.flash('edit', "Your space has been edited");
+			res.redirect('/profile');
+		});
+	})
+
+	app.put('/transactions/:id', function(req,res) {
+		db.Space.update(
+		{
+			status: false
+		},
+		{
+			where: {
+				id: req.params.id
+			}
+		}).then(function() {
+			req.flash('transaction', 'The owner will be in contact shortly');
+			res.redirect('/profile');
+		});
+	});
+
 	app.get('/spaces', function(req, res){
 		if(req.user) {
 			req.user.space = {}
 			db.Space.findAll({
-
+				where: {
+					status: true
+				}
 			}).then(function(data) {
+				console.log(data);
 				for(var i = 0; i < data.length; i++){
 					var start = data[i].dataValues.from.toString().substring(4, 15);
 					var end = data[i].dataValues.to.toString().substring(4, 15);
@@ -35,8 +89,11 @@ module.exports = function(app, passport) {
 			});
 		} else {
 			db.Space.findAll({
-
+				where: {
+					status: true
+				}
 			}).then(function(data) {
+				console.log(data);
 				for(var i = 0; i < data.length; i++){
 					var start = data[i].dataValues.from.toString().substring(4, 15);
 					var end = data[i].dataValues.to.toString().substring(4, 15);
@@ -45,7 +102,6 @@ module.exports = function(app, passport) {
 				res.render('spaces', {space: data});
 			})
 		}
-
 	});
 
 	app.get('/space/:id', isLoggedIn, function(req, res) {
@@ -100,7 +156,7 @@ module.exports = function(app, passport) {
 					})
 				}
 				res.render('profile', {
-					user: req.user
+					user: req.user, message: req.flash()
 				});
 			})
 		});

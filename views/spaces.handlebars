@@ -1,44 +1,54 @@
-<div id="searchContainer">
-	<div class="row">
-		<div class="col-12 md">
-			<form action="/spaces/search/" method="GET">
-				<h1>City:</h1><br>
-				<input type="text" name="city">
-				<button type="submit">Search</button>
-			</form>
-		</div>
-	</div>
 
+<div class="container-fluid">
+     <div id="searchContainer"> <!--Bill, this had a class of "row", but that caused margin issues-->
+          <div>
+          <!--<div class="col-md-12">-->
+               <form action="/spaces/search/" method="GET" class="form-inline">
+                    <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
+                    <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+               </form>
+          </div>
+          <!--</div>-->
+     </div>
+</div>
+
+<div class="container-fluid results">
 	<div class="row">
-		<div class="col-6 md" id="searchList">
+		<div class="col-xs-12 col-sm-5 col-md-4" id="searchList">
 			{{#if user}}
 				{{#each user.space}}
 					<div class="searchResult">
-						<img src="{{this.photo}}" height="150px" width="150px" style="float: left">
-						<h5>Address: {{this.address}}</h5></a>
-						<h5>{{this.city}}, {{this.state}}</h5>
-						<h5>{{this.zipcode}}</h5>
-						<h5>${{this.price}} / month</h5>
-						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
-						<a href="space/{{this.id}}">Details</a>
+						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
+						<p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+						<p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
+						<p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
 					</div>
 				{{/each}}
 			{{else}}
 				{{#each space}}
-					<div class="searchResult">
-						<img src="{{this.photo}}" height="150px" width="150px" style="float: left">
-						<h5>Address: {{this.address}}</h5></a>
+					<div class="searchResult result">
+						<img src="{{this.photo}}" height="150px" width="150px" class="spacePic">
+                              <p class="descriptionAll1"><span class="descriptionFirst">Address: </span><a href="space/{{this.id}}" > {{this.address}}</a></p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">City: </span>{{this.city}}, {{this.state}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Zip: </span>{{this.zipcode}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Cost: </span>${{this.price}} / month</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available From: </span> {{this.from}}</p>
+                              <p class="descriptionAll1"><span class="descriptionFirst">Available Until: </span> {{this.to}}</p>
+						<!--<h5>{{this.type}}</h5>
+						<a href="space/{{this.id}}"> <h5>Address: {{this.address}}</h5></a>
 						<h5>{{this.city}}, {{this.state}}</h5>
 						<h5>{{this.zipcode}}</h5>
 						<h5>${{this.price}} / month</h5>
-						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>
-						<a href="space/{{this.id}}">Details</a>
+						<h5>Available from <strong>{{this.from}}</strong> until <strong>{{this.to}}</strong></h5>-->
 					</div>
 				{{/each}}
 			{{/if}}
 		</div>
-		<div class="col-6 md">
-			<div id="map"></div>
+		<div class="col-xs-12 col-sm-7 col-md-8 gmap">
+			<div class="form-style-8" id="map"></div>
 		</div>
 	</div>
 </div>
@@ -67,7 +77,7 @@ function createMap(lat, lng){
 					'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
 					'<br><a href="/space/{{this.id}}">Details</a>';
 
-					var markerTitle = "{{this.id}}";
+					var markerTitle = "{{this.type}}";
 
 					var label = "{{this.type}}".substring(0, 1);
 
@@ -99,7 +109,7 @@ function createMap(lat, lng){
 						'{{this.type}}<br>{{this.address}}<br>${{this.price}} / month' +
 						'<br><a href="/space/{{this.id}}">Details</a>';
 
-					var markerTitle = "{{this.id}}";
+					var markerTitle = "{{this.type}}";
 
 					var infoWindow = new google.maps.InfoWindow({
 						content: markerInfo
@@ -124,7 +134,7 @@ function createMap(lat, lng){
 }
 
 function initMap(){
-	
+
 	var defaultLat;
 	var defaultLng;
 

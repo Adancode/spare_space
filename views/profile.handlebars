@@ -1,9 +1,14 @@
 
 <!--<div class="jumbotron text-center jumbotronProfile">-->
+{{> alerts}}
 <div class="container containerTopProfile">
+     <div class="row">
      <div class="col-xs-12 col-md-6 form-style-top-div">
           <img src="{{user.pic}}" height="75px" width="75px" class="profileImage">
           <h1 class="profileName">{{user.firstName}} {{user.lastName}} <a class="btn btn-success modalButton" href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i> Add Space</a></h1>
+     </div>
+     <div class="col-xs-hidden col-md-6">
+     </div>
      </div>
 </div>
 <div class="container">
@@ -12,16 +17,91 @@
           <h3 class="profileLeftTitle">Spaces You Are Advertising</h3>
           {{#each user.space}}
                <div class="well form-style-8">
+                    {{#if this.space_status}}
+                      <h1 class="text-success">Available for Rent</h1>
+                    {{else}}
+                      <h1 class="text-danger">Booked</h1>
+                    {{/if}}
                     <img src="{{this.space_photo}}" height="200px" width="200px" class="spaceImageProfile">
                     <p class="descriptionAll"><span class="descriptionFirst">Address: </span><a href="space/{{this.space_id}}">{{this.space_address}}</a></p>
                     <p class="descriptionAll"><span class="descriptionFirst">City: </span>{{this.space_city}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">State: </span>{{this.space_state}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>{{this.space_zipcode}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Description: </span>{{this.space_description}}</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Price: </span>${{this.space_price}}</p>
+                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>{{this.space_description}}</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>${{this.space_price}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>{{this.space_from}}</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>{{this.space_to}}</p>
+                    <button class="btn btn-info btn-md editButton" type="submit" data-toggle="modal" data-target="#{{this.space_id}}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <form action="spaces/delete/{{this.space_id}}?_method=DELETE" method="POST">
+                      <button class="btn btn-danger btn-md deleteButton" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                    </form>
                </div>
+                <div id="{{this.space_id}}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                <!-- Modal content-->
+                   <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Edit your space below.</h4>
+                      </div>
+                      <div class="modal-body">
+                           <form class="form form-style-8" action="spaces/edit/{{this.space_id}}?_method=PUT" method="POST">
+                             <div class="form-group">
+                               <label><h4>Address</h4></label>
+                               <input type="text" name="address" class="form-control" value="{{this.space_address}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>City</h4></label>
+                              <input type="text" name="city" class="form-control" value="{{this.space_city}}" required>
+                            </div>
+                             <div class="form-group">
+                              <label><h4>State</h4></label>
+                              <input type="text" name="state" class="form-control" value="{{this.space_state}}" required>
+                            </div>
+                             <div class="form-group">
+                              <label><h4>Zipcode</h4></label>
+                              <input type="text" name="zipcode" class="form-control" value="{{this.space_zipcode}}" required>
+                            </div>
+                            <div class="form-group">
+                              <label><h4>Type</h4></label>
+                              <select name="type" class="form-control" value="{{this.space_type}}">
+                                <option>Garage</option>
+                                <option>Shed</option>
+                                <option>Warehouse</option>
+                                <option>Closet</option>
+                                <option>Basement</option>
+                                <option>Attic</option>
+                              </select>
+                            </div>
+                             <div class="form-group">
+                               <label><h4>Description</h4></label>
+                               <textarea name="description" class="form-control" rows="8" maxlength="175">{{this.space_description}}</textarea>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>Monthly Price</h4></label>
+                              <input name="price" class="form-control" type="number" value="{{this.space_price}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>FROM</h4></label>
+                              <input name="from" class="form-control" type="date" value="{{this.space_from}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>TO</h4></label>
+                              <input name="to" class="form-control" type="date" value="{{this.space_to}}" required>
+                             </div>
+                             <div class="form-group">
+                              <label><h4>Picture</h4></label>
+                              <input name="photo" class="form-control" type="url" value="{{this.space_photo}}">
+                             </div>
+                             <button class="btn btn-success addSpaceButton" type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Edit Space</button>
+                           </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                   </div>
+                  </div>
+                </div>
           {{/each}}
      </div>
 
@@ -36,8 +116,8 @@
                     <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
                     <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78740</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Description: </span>This is a classy garage available now.</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Price: </span>$400</p>
+                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>This is a classy garage available now.</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>$400</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Nov 20 2016</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Dec 10 2018</p>
                </div>
@@ -47,8 +127,8 @@
                     <p class="descriptionAll"><span class="descriptionFirst">City: </span>Austin</p>
                     <p class="descriptionAll"><span class="descriptionFirst">State: </span>TX</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Zip: </span>78738</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Description: </span>This is the best garage in Austin, look at my reviews, they are the greatest reviews, which is to be expected from the greatest garage in Austin.</p>
-                    <p class="descriptionAll"><span class="descriptionFirst">Price: </span>$2000</p>
+                    <p class="descriptionAll" style="min-height:48px; max-height:48px;"><span class="descriptionFirst">Description: </span>This is the best garage in Austin, look at my reviews, they are the greatest reviews.</p>
+                    <p class="descriptionAll"><span class="descriptionFirst">Monthly Price: </span>$2000</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available From: </span>Mar 10 2016</p>
                     <p class="descriptionAll"><span class="descriptionFirst">Available Until: </span>Mar 20 2017</p>
                </div>
@@ -99,19 +179,19 @@
            	</div>
              <div class="form-group">
                <label><h4>Description</h4></label>
-               <textarea name="description" class="form-control" rows="8" placeholder="Please give a brief description"></textarea>
+               <textarea name="description" class="form-control" rows="8" placeholder="Please give a brief description" maxlength="175"></textarea>
              </div>
              <div class="form-group">
-             	<label><h4>Price</h4></label>
-             	<input name="price" class="form-control" type="number">
+             	<label><h4>Monthly Price</h4></label>
+             	<input name="price" class="form-control" type="number" required>
              </div>
              <div class="form-group">
              	<label><h4>FROM</h4></label>
-             	<input name="from" class="form-control" type="date">
+             	<input name="from" class="form-control" type="date" required>
              </div>
              <div class="form-group">
              	<label><h4>TO</h4></label>
-             	<input name="to" class="form-control" type="date">
+             	<input name="to" class="form-control" type="date" required>
              </div>
              <div class="form-group">
              	<label><h4>Picture</h4></label>
@@ -127,4 +207,3 @@
   </div>
 </div>
 <!-- End Modal -->
-</div>
