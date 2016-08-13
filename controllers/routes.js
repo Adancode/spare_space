@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
 	app.post('/spaces/create', function(req, res) {
 		var user = req.user;
-			db.Space.create({address: req.body.address, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, type: req.body.type, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
+			db.Space.create({address: req.body.address, ownerFirst: user.firstName, ownerLast: user.lastName, ownerEmail: user.email, city: req.body.city, state: req.body.state, zipcode: req.body.zipcode, type: req.body.type, status: true, description: req.body.description, price: req.body.price, from: req.body.from, to: req.body.to, photo: req.body.photo})
 			.then(function(space) {
 				user.addSpace(space);
 			}).then(function() {
@@ -55,8 +55,12 @@ module.exports = function(app, passport) {
 	})
 
 	app.put('/transactions/:id', function(req,res) {
+		var user = req.user;
 		db.Space.update(
 		{
+			buyerFirst: user.firstName,
+			buyerLast: user.lastName,
+			buyerEmail: user.email,
 			status: false
 		},
 		{
@@ -64,8 +68,21 @@ module.exports = function(app, passport) {
 				id: req.params.id
 			}
 		}).then(function() {
-			req.flash('transaction', 'The owner will be in contact shortly');
-			res.redirect('/profile');
+			db.Space.find(
+			{
+				where: {
+					id: req.params.id
+				}
+			}).then(function(data) {
+				db.Reservation.create({
+					address: data.address, ownerFirst: data.ownerFirst, ownerLast: data.ownerLast, ownerEmail: data.ownerEmail, city: data.city, state: data.state, zipcode: data.zipcode, description: data.description, price: data.price, from: data.from, to: data.to})
+				.then(function(res) {
+					user.addReservation(res);
+				}).then(function() {
+					req.flash('success', 'Your reservation has been created');
+					res.redirect('/profile');
+				})
+			})
 		});
 	});
 
@@ -125,20 +142,25 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res){
-		var queries = [];
+		var spaceQueries = [];
+		var resQueries = [];
 		req.user.space = [];
-		db.Space.findAll({where: {userID: req.user.id}}).then(function(data) {
+		req.user.res = [];
+		db.Space.findAll({where: {userId: req.user.id}}).then(function(data) {
 			for(var i = 0; i < data.length; i++){
 				data[i].dataValues.from = data[i].dataValues.from.toString().substring(4, 15);
 				data[i].dataValues.to = data[i].dataValues.to.toString().substring(4, 15);
 			}	
 			data.forEach(function(space) {
-				queries.push(space);
+				spaceQueries.push(space);
 			})
-			Promise.all(queries).then(function(result) {
+			Promise.all(spaceQueries).then(function(result) {
 				for(var i=0; i<result.length; i++) {
 					req.user.space.push({
 						space_id: result[i].id,
+						space_buyerFirst: result[i].buyerFirst,
+						space_buyerLast: result[i].buyerLast,
+						space_buyerEmail: result[i].buyerEmail,
 						space_address: result[i].address,
 						space_city: result[i].city,
 						space_state: result[i].state,
@@ -152,9 +174,39 @@ module.exports = function(app, passport) {
 						space_photo: result[i].photo
 					})
 				}
-				res.render('profile', {
-					user: req.user, message: req.flash()
-				});
+				db.Reservation.findAll({where: {userId: req.user.id}}).then(function(rdata) {
+					for(var i=0; i<rdata.length; i++) {
+						rdata[i].dataValues.from = rdata[i].dataValues.from.toString().substring(4,15);
+						rdata[i].dataValues.to = rdata[i].dataValues.to.toString().substring(4,15);
+					}
+					rdata.forEach(function(res) {
+						resQueries.push(res);
+					})
+					Promise.all(resQueries).then(function(resresult) {
+						for(var i=0; i<resresult.length; i++) {
+							req.user.res.push({
+								res_id: resresult[i].id,
+								res_ownerFirst: resresult[i].ownerFirst,
+								res_ownerLast: resresult[i].ownerLast,
+								res_ownerEmail: resresult[i].ownerEmail,
+								res_address: resresult[i].address,
+								res_city: resresult[i].city,
+								res_state: resresult[i].state,
+								res_zipcode: resresult[i].zipcode,
+								res_type: resresult[i].type,
+								res_description: resresult[i].description,
+								res_price: resresult[i].price,
+								res_to: resresult[i].to,
+								res_from: resresult[i].from,
+								res_status: resresult[i].status,
+								res_photo: resresult[i].photo
+							})
+						}
+						res.render('profile', {
+							user: req.user, message: req.flash()
+						});
+					})
+				})
 			})
 		});
 	});
