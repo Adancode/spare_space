@@ -4,14 +4,52 @@
     <meta charset="utf-8">
     <title>Spare Space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="https://use.fontawesome.com/ea4903a042.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://use.fontawesome.com/ea4903a042.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
-<body class="Site" style="background-color:;">
+<body>
+     <div class="navbar-fixed">
+         <nav class="">
+              <div class="container">
+                   <div class="nav-wrapper">
+                     <a href="#!" class="brand-logo" id="navLinksLogo">Spare Space</a>
+                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                     <ul class="right hide-on-med-and-down">
+                         <li><a class="navLinks" href="/">Home</a></li>
+                         <li><a class="navLinks" href="/spaces">Search</a></li>
+                         {{#if user}}
+                         <li><a class="navLinks" href="/profile">Welcome, {{user.firstName}}!</a></li>
+                         {{else}}
+                         {{/if}}
+                         {{#if user}}
+                         <li><a class="navLinks" href="/logout">Logout</a></li>
+                         {{else}}
+                         {{/if}}
+                     </ul>
+                     <ul class="side-nav navLinks" id="mobile-demo">
+                         <li><a class="navLinks" href="/">Home</a></li>
+                         <li><a class="navLinks" href="/spaces">Search</a></li>
+                         {{#if user}}
+                         <li><a class="navLinks" href="/profile">Welcome, {{user.firstName}}!</a></li>
+                         {{else}}
+                         {{/if}}
+                         {{#if user}}
+                         <li><a class="navLinks" href="/logout">Logout</a></li>
+                         {{else}}
+                         {{/if}}
+                     </ul>
+                  </div>
+            </div>
+     </nav>
+</div>
+
      <!-- Nav Bar -->
-     <div class="navbar navbar-dark transparent navbar-inverse navbar-fixed-top">
+     <!--<div class="navbar navbar-dark transparent navbar-inverse navbar-fixed-top">
          <div class="container">
            <div class="navbar-header">
            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +58,8 @@
              <span class="icon-bar"></span>
            </button>
            <a class="navbar-brand text-muted" id="linkZero" href="/">Spare Space</a>
-           </div> <!-- This closes the navbar-header div, and makes the dropdown menu at small screen sizes drop down blow the nav bar, instead of within it.-->
-           <div class="collapse navbar-collapse">
+      </div> --><!-- This closes the navbar-header div, and makes the dropdown menu at small screen sizes drop down blow the nav bar, instead of within it.-->
+           <!--<div class="collapse navbar-collapse">
              <ul class="nav navbar-nav navbar-right">
             		<li><a class="navButton" href="/" id="linkOne">Home</a></li>
                     <li><a class="navButton" href="/spaces" id="linkFour">Search</a></li>
@@ -36,13 +74,21 @@
              </ul>
            </div>
          </div>
-      </div>
+    </div>-->
      <!-- End Nav Bar-->
-    <main class="Site-content">
+    <main>
     {{{body}}}
     </main>
 
-         <div class="container theFooter">
+  <footer class="page-footer" id="theFooter">
+      <div class="container footerLeftItem light">
+      &copy; UT Coding Boot Camp
+      <a class="footerItemTwo light" href="#!">Privacy</a>
+      <a class="footerItemOne light" href="#!">Terms</a>
+      </div>
+  </footer>
+
+         <!--<div class="container theFooter">
               <div class="footer">
                    <div class="">
                         <span id="itemOneFooter">&copy; UT Coding Boot Camp </span>
@@ -50,9 +96,14 @@
                         <span id="itemThreeFooter"> Privacy</span>
                    </div>
               </div>
-         </div>
-
-
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+         </div>-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+		{{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}
+         <script>
+         $( document ).ready(function(){
+              $(".button-collapse").sideNav();
+         });
+         </script>
 </body>
 </html>

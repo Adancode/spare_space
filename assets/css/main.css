@@ -1,495 +1,286 @@
-/* ==========================================================================
-   Author's custom styles - change something else
-   ========================================================================== */
 
-     @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
-     /*body {
-          box-sizing: border-box;
-     }*/
+/* =========== Landing Page Background Image =========== */
 
-     .imageHolder {
-          background: url(../images/backgroundPic.jpg) no-repeat center center fixed;
-          webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-          position:fixed !important;
-          position:absolute;
-          top:0;
-          right:0;
-          bottom:0;
-          left:0;
-     }
+.imageHolder {
+     background: url(../images/backgroundPic.jpg) no-repeat center center fixed;
+     webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     height: 700px;
+     margin-top: -224px;
+     padding-top: 80px;
+     /*position:fixed !important;
+     position:absolute;
+     top: 0;
+     right:0;
+     bottom: 180px;
+     left:0;*/
+}
 
-     /* ========================== Footer */
-     .theFooter {
-          clear: both;
-          color: #333333;
-          height: 50px;
-          z-index: 1000;
-/*          padding-top: 16px;*/
+/* =========== Landing Page Background Image =========== */
 
-     }
+/* =========== Landing Page =========== */
 
-     .footer {
-      margin-top: 15px;
-     }
+nav .button-collapse i {
+    color: black;
+}
 
-     #itemOneFooter {
+.brand-logo {
+     margin-left: 10px;
+}
 
-     }
+#title {
+     margin-top: 100px;
+}
 
-     #itemTwoFooter, #itemThreeFooter {
-          float: right;
-          margin-left: 20px;
-     }
+.description {
+     margin-bottom: -60px;
+}
 
-     #itemTwoFooter {
-          margin-right: 20px;
-     }
+#mainHeading {
+     font-size: 48px;
+     margin-top: 220px;
+     margin-bottom: 40px;
+     color: white;
+     text-shadow: #000 0px 0px 20px;
+     -webkit-font-smoothing: antialiased;
+}
 
-     #itemThreeFooter {
-          margin-right: 20px;
-     }
+#firstLandingButton {
 
-     /* ========================== Footer */
+}
 
-     /* ========================== Sticky Footer */
-     .Site {
-          display: flex;
-          min-height: 100vh;
-          flex-direction: column;
-     }
+#secondLandingButton {
+     margin-top: 20px;
+}
 
-     .Site-content {
-          flex: 1;
-     }
-     /* ========================== Sticky Footer */
+.spareSpaceDescription {
+     font-family: 'Roboto', sans-serif;
+     margin-top: -20px;
+     padding-bottom: 0px;
+     /*z-index: 1000px;*/
+}
 
+/* =========== Landing Page =========== */
+
+/* =========== Spaces Page =========== */
+
+
+
+/* =========== Spaces Page =========== */
+
+#map{
+     height: 552px;
+     margin-bottom: 0;
+}
+
+#searchContainer{
+     margin-top: 45px;
+     margin-bottom: -40px;
+}
+
+#searchList {
+     max-height: 512px;
+     overflow-y: auto;
+     overflow-x: hidden;
+     line-height: 13px;
+     padding-right: 0;
+     margin-top: 50px;
+}
+
+.spacePic {
+     float: left;
+     /*clear:both;*/
+     margin-right: 20px;
+     margin-bottom: 20px;
+}
+
+.searchResult:first-child {
+     margin-top: 0;
+}
+
+.searchResult {
+     margin-top:50px;
+}
+
+.gmap {
+     margin-top: 0px;
+}
+
+.descriptionAll1 {
+     font-size: 14px;
+}
+
+.inputBox {
+     margin-bottom: 10px;
+}
+
+/*#searchList{
+     max-height: 700px;
+     overflow-y: auto;
+     overflow-x: hidden;
+     float: left;
+     width: 45%;
+}*/
+
+/*.searchResult{
+     background-color: #EEEEEE;
+     padding: 5px;
+     margin: 5px 0;
+     width: 100%;
+}*/
+
+
+
+/* ========================== Spaces Page */
+
+.top-row {
+margin-top: 70px;
+}
+
+/* =========== Sticky Footer =========== */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.page-footer {
+     height: 60px;
+     color: white;
+}
+
+.footerLeftItem {
+     color: black;
+}
+
+.footerItemTwo {
+     float: right;
+     margin-left: 40px;
+     color: black;
+}
+
+.footerItemOne {
+     float: right;
+     color: black;
+}
+
+nav {
+     z-index: 1000;
+     background: rgba(255,255,255, .9);
+
+}
+
+.navLinks {
+     color: black;
+     font-weight: 300;
+}
+
+#navLinksLogo {
+     color: black;
+     font-weight: 300;
+}
+
+#theFooter {
+     background: white;
+}
+
+/* =========== Sticky Footer =========== */
+
+/* =========== Profile =========== */
+
+.containerTopProfile {
+     margin-top: 20px;
+     margin-bottom: 20px;
+}
+
+.form-style-top-div {
+     margin-top: 30px;
+     font-family: 'Open Sans Condensed', arial, sans;
+    /*width: 500px;*/
+    padding: 30px;
+    background: #FFFFFF;
+    margin-bottom: -30px;
+    /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);*/
+}
+
+.profileImage {
+     border-radius: 4px;
+     border: 2px solid black;
+     float: left;
+}
+
+.profileName {
+     float: left;
+     font-size: 22px;
+     margin-left: 20px;
+     margin-top: 24px;
+}
+
+.addSpaceButton {
+     background: #FBC02D;
+     margin-top: -3px;
+     margin-left: 10px;
+}
+
+.buttonIcon {
+     padding-right: 6px;
+}
+
+/* =========== Profile =========== */
+
+/*===============  Media Queries ================*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
      #mainHeading h1 {
-          font-size: 60px;
-          margin-top: 140px;
-          color: white;
-          text-shadow: #000 0px 0px 20px;
-          -webkit-font-smoothing: antialiased;
-     }
-
-     .googButtons {
-          margin-right: 20px;
-          border-style: none;
-     }
-
-     li a.navButton:hover {
-          color: black;
-     }
-
-     a#linkZero, .navButton#linkOne,  .navButton#linkTwo, .navButton#linkThree, .navButton#linkFour, .navButton#linkFive  {
-          color:white;
-     }
-
-     a#linkZero:hover, .navButton#linkOne:hover,  .navButton#linkTwo:hover, .navButton#linkThree:hover, .navButton#linkFour:hover, .navButton#linkFive:hover  {
-          background-color:white;
-          color: black;
-     }
-
-     a.landingButtons {
-          color: white;
-          background-color: white;
-     }
-
-     a.landingButtons:focus {
-          text-decoration: none;
-     }
-
-     #firstLandingButton, #secondLandingButton{
-          margin-bottom: 40px;
-          background-color: #222222 !important;
-          border-radius: 0;
-     }
-
-     a.landingButtons:hover {
-          color: black !important;
-          text-decoration: none;
-          background-color: white !important;
-     }
-
-     #firstLandingButton:hover, #secondLandingButton:hover {
-          background-color: white !important;
-          color: black !important;
-     }
-
-     .landingButtonContainer {
-          margin-top: 60px;
-     }
-
-     /* ========================== Profile Page */
-
-     .owner {
-      margin-top: 0;
-      margin-bottom: 0;
-     }
-
-     .owner-email {
-      margin-top: 0;
-     }
-
-     .form-style-8{
-         font-family: 'Open Sans Condensed', arial, sans;
-         /*width: 500px;*/
-         padding: 30px;
-         background: #FFFFFF;
-         margin: 10px auto;
-         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-
-     }
-
-     .containerTopProfile {
-          margin-top: 20px;
-          margin-bottom: 20px;
-     }
-
-     .form-style-top-div {
-          margin-top: 30px;
-          font-family: 'Open Sans Condensed', arial, sans;
-         /*width: 500px;*/
-         padding: 30px;
-         background: #FFFFFF;
-         margin-bottom: -30px;
-         /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);*/
-     }
-     .form-style-8 h2{
-         background: #4D4D4D;
-         text-transform: uppercase;
-         font-family: 'Open Sans Condensed', sans-serif;
-         color: #797979;
-         font-size: 18px;
-         font-weight: 100;
-         padding: 20px;
-         margin: -30px -30px 30px -30px;
-     }
-     .form-style-8 input[type="text"],
-     .form-style-8 input[type="date"],
-
-
-     .form-style-8 input[type="number"],
-
-     .form-style-8 input[type="time"],
-     .form-style-8 input[type="url"],
-
-     .form-style-8 textarea,
-     .form-style-8 select
-     {
-         box-sizing: border-box;
-         -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-         outline: none;
-         display: block;
-         width: 100%;
-         padding: 7px;
-         border: none;
-         border-bottom: 1px solid #ddd;
-         background: transparent;
-         margin-bottom: 10px;
-         font: 16px Arial, Helvetica, sans-serif;
-         height: 45px;
-     }
-     .form-style-8 textarea{
-         resize:none;
-         overflow: hidden;
-     }
-     .form-style-8 input[type="button"],
-     .form-style-8 input[type="submit"]{
-         -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-         -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-         box-shadow: inset 0px 1px 0px 0px #45D6D6;
-         background-color: #2CBBBB;
-         border: 1px solid #27A0A0;
-         display: inline-block;
-         cursor: pointer;
-         color: #FFFFFF;
-         font-family: 'Open Sans Condensed', sans-serif;
-         font-size: 14px;
-         padding: 8px 18px;
-         text-decoration: none;
-         text-transform: uppercase;
-     }
-     .form-style-8 input[type="button"]:hover,
-     .form-style-8 input[type="submit"]:hover {
-         background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-         background-color:#34CACA;
-     }
-
-     .addSpaceButton {
-          margin-top: 17px;
-     }
-
-
-     .profileImage {
-          border-radius: 4px;
-          border: 2px solid black;
-          float: left;
-     }
-
-     .profileName {
-          float: left;
-          font-size: 22px;
-          margin-left: 20px;
-
-     }
-
-     .modalButton {
-          margin-left: 10px;
-     }
-
-     .spaceImageProfile {
-          display: block;
-          margin: 0 auto;
-          border-radius: 4px;
-          margin-bottom: 20px;
-          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.42);
-     }
-
-     .descriptionFirst {
-          font-weight: bold;
-     }
-
-     .descriptionAll {
-          font-size: 17px;
-     }
-
-     .profileLeftTitle {
-          margin-bottom: 20px;
-     }
-
-     /* ========================== Profile Page */
-     .alert {
-      margin-top: 55px;
-      margin-bottom: 0;
-     }
-
-     /* ========================== Space/id Page */
-
-     .spaceImageProfileDetail {
-          display: block;
-          margin: 0 auto;
-          border-radius: 4px;
-          margin-bottom: 20px;
-          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.42);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.42);
-         height: 355px;
-         width: 355px;
-     }
-
-     .form-style-9{
-         font-family: 'Open Sans Condensed', arial, sans;
-         /*width: 500px;*/
-         padding: 30px;
-         background: #FFFFFF;
-         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-     }
-
-     .spaceTitle {
-          font-family: 'Open Sans Condensed', arial, sans;
-          background-color: none;
-          margin-bottom: 30px;
-          margin-top: 80px;
-     }
-
-     .payButton {
-          margin-top: 20px;
-     }
-
-     .stripe {
-      margin-top: 40px;
-     }
-
-     .editButton {
-          margin-top: 10px;
-          float: left;
-     }
-
-     .deleteButton {
-          margin-top: 10px;
-          margin-left: 10px;
-     }
-
-     /* ========================== Space/id Page */
-
-     /* ========================== Detail Space/id Page */
-     .firstDes {
-      margin-top: 0;
-     }
-
-     .form-style-10 {
-         font-family: 'Open Sans Condensed', arial, sans;
-         /*width: 500px;*/
-         padding: 30px;
-         background: #FFFFFF;
-         /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);*/
-
-     }
-
-     /* ========================== Detail Space/id Page */
-
-     form-style-8{
-         font-family: 'Open Sans Condensed', arial, sans;
-         /*width: 500px;*/
-         padding: 30px;
-         background: #FFFFFF;
-         margin: 10px auto;
-         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-         -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
-
-     }
-
-     /* ========================== Spaces Page */
-
-     #searchContainer{
-          margin-top: 85px;
-          /*margin: 40px auto auto;*/
-          /*height: 700px;*/
-          margin-bottom: -40px;
-     }
-
-     #searchList {
-          max-height: 512px;
-          overflow-y: auto;
-          overflow-x: hidden;
-          line-height: 13px;
-          padding-right: 0;
-          margin-top: 50px;
-     }
-
-     .spacePic {
-          float: left;
-          /*clear:both;*/
-          margin-right: 20px;
-          margin-bottom: 20px;
-     }
-
-     .searchResult:first-child {
-      margin-top: 0;
-     }
-
-     .searchResult {
-          margin-top:50px;
-
-     }
-
-     .gmap {
-          margin-top: 0px;
-     }
-
-     #map{
-          width: 100%;
-          height: 552px;
-          margin-bottom: 0;
-     }
-
-     .descriptionAll1 {
-          font-size: 14px;
-     }
-
-     .inputBox {
-          margin-bottom: 10px;
-     }
-
-     /*#searchList{
-          max-height: 700px;
-          overflow-y: auto;
-          overflow-x: hidden;
-          float: left;
-          width: 45%;
-     }*/
-
-     /*.searchResult{
-          background-color: #EEEEEE;
-          padding: 5px;
-          margin: 5px 0;
-          width: 100%;
-     }*/
-
-
-
-     /* ========================== Spaces Page */
-
-     .top-row {
-      margin-top: 70px;
-     }
-
-     /*===============  Media Queries ================*/
-
-    /* Custom, iPhone Retina */
-    @media only screen and (min-width : 320px) {
-        .form-control {
-          display: -webkit-inline-box;
-          width: 48%;
-        }
-
+         font-size: 50px;
     }
+}
 
-    /* Extra Small Devices, Phones */
-    @media only screen and (min-width : 480px) {
-         .profileImage {
-            border-radius: 4px;
-            border: 2px solid black;
-            float: left;
-        }
-
+@media only screen and (min-width : 526px) {
+     #mainHeading h1 {
+         font-size: 46px;
     }
+}
 
-    @media only screen and (min-width : 526px) {
-        .inputBox {
-             margin-bottom: 0px;
-        }
-
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+     #mainHeading h1 {
+         font-size: 60px;
     }
+}
 
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-         #mainHeading h1 {
-            font-size: 120px;
-            margin-top: 180px;
-         }
-         .profileName {
-            margin-left: 40px;
-            font-size: 36px;
-        }
-        .gmap {
-             /*margin-top: 40px;*/
-        }
-        .spaceImageProfileDetail {
-            height: 400px;
-            width: 400px;
-        }
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+     #mainHeading h1 {
+         font-size: 64px;
     }
+}
 
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
 
-    }
+}
 
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
+/* Very Large Devices, Wide Screens */
+@media only screen and (min-width : 1300px) {
 
-    }
-
-    /* Very Large Devices, Wide Screens */
-    @media only screen and (min-width : 1300px) {
-
-    }
+}
 
 /*================================================*/

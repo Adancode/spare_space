@@ -1,22 +1,19 @@
 
-<div class="container-fluid">
-     <div id="searchContainer"> <!--Bill, this had a class of "row", but that caused margin issues-->
+<div class="container">
+     <div id="searchContainer">
           <div>
-          <!--<div class="col-md-12">-->
                <form action="/spaces/search/" method="GET" class="form-inline">
                     <input type="text" name="city" placeholder="Enter a City" class="form-control inputBox">
                     <button class="btn btn-success searchButton" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
                     <a class="btn btn-success advancedSearchButton" href="#" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span> Advanced</a>
                </form>
-
           </div>
-          <!--</div>-->
      </div>
 </div>
 
-<div class="container-fluid results">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4" id="searchList">
+		<div class="col s12 col m6 offset m3">
 			{{#if user}}
 				{{#each user.space}}
 					<div class="searchResult">
